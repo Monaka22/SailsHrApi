@@ -7,21 +7,15 @@
 
 module.exports = {
     GetbranchadditDatatable : async function (req,res) {
-        let data = await Branchaddit.find()
-        .populate("branch_addit_branch_id")
-        .exec(function(err,branch_addit){
-            if(err){
-                return res.json(err)
-            }
+        let data = await BranchBranchaddit.find()
             return res.json({
                 draw: 0,
                 recordsTotal: data.length,
                 recordsFiltered: data.length,
-                data: data
+                data: data,
               })
-        })
+        }
          
-    }
 
 };
 

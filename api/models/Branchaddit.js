@@ -33,8 +33,9 @@ module.exports = {
       type: 'ref', columnType: 'datetime'
     },
     branch_addit_branch_id:{
-      model: 'branch'
-    }
+      model:'branch',
+      unique: true
+    },
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝

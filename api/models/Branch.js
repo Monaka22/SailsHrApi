@@ -12,7 +12,8 @@ module.exports = {
     id:{
       type: 'number',
       autoIncrement: true,
-      columnName: 'branch_id'
+      columnName: 'branch_id',
+      via: 'branch_id'
     },
     branch_name:{
       type : 'string'
