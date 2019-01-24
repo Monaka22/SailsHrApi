@@ -44,11 +44,16 @@ module.exports.routes = {
   'POST /position/delete':'PositionController.PostPositionDelete',
   //Branch_Addit API
   'GET /branchaddit/datatable' : 'BranchadditController.GetbranchadditDatatable',
-  'POST /branchaddit/create': 'BranchadditController.PostbranchadditCreate',
-  'GET /branchaddit/:id/view': 'BranchadditController.GetbranchadditById',
-  'POST /branchaddit/update': 'BranchadditController.PostbranchadditUpdate',
-  'POST /branchaddit/delete':'BranchadditController.PostbranchadditDelete',
-
+  // 'POST /branchaddit/create': 'BranchadditController.PostbranchadditCreate',
+  // 'GET /branchaddit/:id/view': 'BranchadditController.GetbranchadditById',
+  // 'POST /branchaddit/update': 'BranchadditController.PostbranchadditUpdate',
+  // 'POST /branchaddit/delete':'BranchadditController.PostbranchadditDelete',
+ //user API
+ 'GET /user/datatable' : 'UserController.GetuserDatatable',
+ 'POST /user/create': 'UserController.PostuserCreate',
+ 'GET /user/:id/view': 'UserController.GetuserById',
+ 'POST /user/update': 'UserController.PostuserUpdate',
+ 'POST /user/delete':'UserController.PostuserDelete',
 
   /***************************************************************************
    *                                                                          *

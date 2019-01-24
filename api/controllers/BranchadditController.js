@@ -7,7 +7,7 @@
 
 module.exports = {
     GetbranchadditDatatable : async function (req,res) {
-        let data = await BranchBranchaddit.find()
+        let data = await Branchaddit.find()
             return res.json({
                 draw: 0,
                 recordsTotal: data.length,
