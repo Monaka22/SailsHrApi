@@ -1,13 +1,13 @@
 /**
- * BranchadditController
+ * BenefitController
  *
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
 module.exports = {
-  GetbranchadditDatatable: async function (req, res) {
-    let data = await Branchaddit.find().populate('branch_addit_branch_id');
+  GetbenefitDatatable: async function (req, res) {
+    let data = await Benefit.find().populate('benefit_emp_id');
     // const branch = JSON.parse(JSON.stringify(branch_addit_branch_id[0]));
     //             const branch_name = branch.branch_addit_branch_id.branch_name;
     //             const branch_id = branch.branch_addit_branch_id.id;
@@ -20,23 +20,22 @@ module.exports = {
 
     })
   },
-  PostBranchadditCreate: async function (req, res) {
-    await Branchaddit.create({
-      branch_addit_title: req.body.branch_addit_title,
-      branch_addit_price: req.body.branch_addit_price,
-      branch_addit_date: req.body.branch_addit_date,
-      branch_addit_branch_id: req.body.branch_addit_branch_id
+  PostbenefitCreate: async function (req, res) {
+    await Benefit.create({
+      benefit_title: req.body.benefit_title,
+      benefit_price: req.body.benefit_price,
+      benefit_emp_id: req.body.benefit_emp_id,
     }).fetch()
     return res.json({
       message: 'Create Complele'
     })
   },
-  GetBranchadditById: async function (req, res) {
+  GetbenefitById: async function (req, res) {
     const id = req.param('id')
     if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
-      let data = await Branchaddit.findOne({
+      let data = await Benefit.findOne({
         id: id
-      }).populate('branch_addit_branch_id');
+      }).populate('benefit_emp_id');
       if (data) {
         return res.json({
           data: data,
@@ -46,16 +45,15 @@ module.exports = {
       return res.sendStatus(404);
     }
   },
-  PostBranchadditUpdate: async function (req, res) {
+  PostbenefitUpdate: async function (req, res) {
     try {
 
-      await Branchaddit.update({
+      await Benefit.update({
         id: req.body.id
       }).set({
-        branch_addit_title: req.body.branch_addit_title,
-        branch_addit_price: req.body.branch_addit_price,
-        branch_addit_date: req.body.branch_addit_date,
-        branch_addit_branch_id: req.body.branch_addit_branch_id
+        benefit_title: req.body.benefit_title,
+        benefit_price: req.body.benefit_price,
+        benefit_emp_id: req.body.benefit_emp_id,
       })
       return res.json({
         message: 'Update sucsess'
@@ -72,9 +70,9 @@ module.exports = {
       })
     }
   },
-  PostBranchadditDelete: async function (req, res) {
+  PostbenefitDelete: async function (req, res) {
     const id = req.body.id
-    await Branchaddit.destroy({
+    await Benefit.destroy({
       id: id
     }).exec(function (err) {
       if (err) {
@@ -87,7 +85,5 @@ module.exports = {
       })
     })
   }
-
-
 
 };

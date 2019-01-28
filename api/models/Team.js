@@ -1,53 +1,31 @@
 /**
- * Employee.js
+ * Team.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
 module.exports = {
- 
+
   primaryKey: 'id',
   attributes: {
-
     id:{
       type: 'number',
       autoIncrement: true,
-      columnName: 'emp_id',
+      columnName: 'team_id'
     },
-    emp_name:{
-      type : 'string'
+    project_id:{
+      model : 'projectmanage'
     },
-    emp_salary:{
-      type : 'number'
+    emp_id:{
+      model : 'employee'
     },
-    emp_address: {
-      type: 'string'
+    emp_start_date : {
+      type: 'ref', columnType: 'date'
     },
-    emp_id_card:{
-      type: 'string'
-    },
-    emp_tel:{
-      type: 'string'
-    },
-    emp_branch_id:{
-      model : 'branch',
-      unique: true
-    },
-    emp_emer_con_name:{
-      type : 'string'
-    },
-    emp_emer_con_relation:{
-      type : 'string'
-    },
-    emp_emer_con_address:{
-      type : 'string'
-    },
-    emp_emer_con_tel:{
-      type : 'string'
-    },
-
-
+    emp_end_date: {
+      type: 'ref', columnType: 'date'
+    }
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝

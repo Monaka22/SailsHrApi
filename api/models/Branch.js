@@ -26,6 +26,10 @@ module.exports = {
       required: true,
       isIn: [0,1]
     },
+    // branchaddits: {
+    //   collection: 'branchaddit',
+    //   via: 'branch'
+    // },
     // createdAt: { type: 'number', autoCreatedAt: true },
     // updatedAt: { type: 'number', autoUpdatedAt: true },
 

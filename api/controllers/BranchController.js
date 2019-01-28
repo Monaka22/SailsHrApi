@@ -7,16 +7,18 @@
 
 module.exports = {
   GetBranchDatatable: async function (req, res) {
+    
     let data = await Branch.find().where({
       status: 1
     })
-
+    //console.log(data.data.branch_name);
     return res.json({
       draw: 0,
       recordsTotal: data.length,
       recordsFiltered: data.length,
-      data: data
+      data:data
     })
+    
   },
   PostBranchCreate: async function (req, res) {
     await Branch.create({
