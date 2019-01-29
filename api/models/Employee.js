@@ -44,7 +44,7 @@ module.exports = {
     },
     emp_branch_id:{
       model : 'branch',
-      unique: true
+      unique: false
     },
    
 

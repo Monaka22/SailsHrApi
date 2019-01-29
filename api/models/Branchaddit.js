@@ -34,7 +34,7 @@ module.exports = {
     },
     branch_addit_branch_id:{
       model:'branch',
-      unique: true
+      unique: false
     },
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
