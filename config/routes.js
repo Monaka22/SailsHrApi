@@ -102,6 +102,9 @@ module.exports.routes = {
 'GET /projectaddit/:id/view': 'ProjectadditController.GetprojectadditById',
 'POST /projectaddit/update': 'ProjectadditController.PostprojectadditUpdate',
 'POST /projectaddit/delete': 'ProjectadditController.PostprojectadditDelete',
+//branch cost API
+'GET /branchcost/addit/:id/view':'BranchadditController.GetbranchcostGetAdditByid',
+'GET /branchcost/fixcost/:id/view':'BranchadditController.GetbranchcostGetFixcostByid',
 
 
 

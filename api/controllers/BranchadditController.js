@@ -86,7 +86,33 @@ module.exports = {
         message: 'Delete sucsess'
       })
     })
-  }
+  },
+  GetbranchcostGetAdditByid : async function(req,res){
+    const id = req.param('id')
+    if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
+      let data = await Branchaddit.find({where:{branch_addit_branch_id:id}});
+      if (data) {
+        return res.json({
+          data: data,
+          message: 'Load By id sucess'
+        })
+      }
+      return res.sendStatus(404);
+    }
+  },
+  GetbranchcostGetFixcostByid : async function(req,res){
+    const id = req.param('id')
+    if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
+      let data = await Fixcost.find({where:{fixcost_branch_id:id}});
+      if (data) {
+        return res.json({
+          data: data,
+          message: 'Load By id sucess'
+        })
+      }
+      return res.sendStatus(404);
+    }
+  },
 
 
 
