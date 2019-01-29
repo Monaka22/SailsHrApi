@@ -41,7 +41,7 @@ module.exports.http = {
     
     
     bodyParser: require('skipper')({
-      maxWaitTimeBeforePassingControlToApp: 1500000
+      maxWaitTimeBeforePassingControlToApp: 150000000
     }),
 
       

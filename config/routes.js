@@ -56,11 +56,10 @@ module.exports.routes = {
   'POST /user/delete': 'UserController.PostuserDelete',
   //employee API
   'GET /emp/datatable': 'EmployeeController.GetemployeeDatatable',
-  //'GET /emp/datatable': 'EmployeeController.GetemployeeDatatable',
   'POST /emp/create': 'EmployeeController.PostemployeeCreate', 
   // 'GET /emp/:id/view': 'EmployeeController.GetemployeeById',
-  // 'POST /emp/update': 'EmployeeController.PostemployeeUpdate',
-  // 'POST /emp/delete':'EmployeeController.PostemployeeDelete',
+  'POST /emp/update': 'EmployeeController.PostemployeeUpdate',
+  'POST /emp/delete':'EmployeeController.PostemployeeDelete',
   //benefit API
   'GET /benefit/datatable': 'BenefitController.GetbenefitDatatable',
   'POST /benefit/create': 'BenefitController.PostbenefitCreate',

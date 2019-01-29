@@ -30,10 +30,6 @@ module.exports = {
     emp_tel:{
       type: 'string'
     },
-    emp_branch_id:{
-      model : 'branch',
-      unique: true
-    },
     emp_emer_con_name:{
       type : 'string'
     },
@@ -46,6 +42,11 @@ module.exports = {
     emp_emer_con_tel:{
       type : 'string'
     },
+    emp_branch_id:{
+      model : 'branch',
+      unique: true
+    },
+   
 
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
