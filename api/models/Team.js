@@ -18,7 +18,7 @@ module.exports = {
       model : 'projectmanage'
     },
     emp_id:{
-      model : 'employee'
+      model : 'employees'
     },
     emp_start_date : {
       type: 'ref', columnType: 'date'

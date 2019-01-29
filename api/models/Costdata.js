@@ -15,7 +15,7 @@ module.exports = {
       columnName: 'cost_id'
     },
     cost_emp_id:{
-      model : 'employee'
+      model : 'employees'
     },
     cost_branch_id:{
       model : 'branch'

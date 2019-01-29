@@ -16,7 +16,7 @@ module.exports = {
       columnName: 'position_emp_id',
     },
     emp_id:{
-      model:'employee'
+      model:'employees'
     },
     position_id:{
       model:'position'

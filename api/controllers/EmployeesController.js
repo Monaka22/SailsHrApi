@@ -20,31 +20,32 @@ module.exports = {
     
         })
       },
-      PostemployeeCreate: async function (req, res) {
-        var newname = Date.now();
-        req.file('filetoupload').upload({
-          dirname: require('path').resolve(sails.config.appPath, 'assets/images'),
-          saveAs: newname + '.jpg',
-          maxBytes: 1000000
-        }, function (err, uploadedFiles) {
-        });
-        await Employees.create({
-          emp_name: "adsd",
-          emp_salary: "500",
-          emp_address: "req.body.emp_name",
-          emp_id_card: "req.body.emp_name",
-          emp_tel: "req.body.emp_name",
-          emp_emer_con_name: "req.body.emp_name",
-          emp_emer_con_relation: "req.body.emp_name",
-          emp_emer_con_address: "req.body.emp_name",
-          emp_emer_con_tel: "req.body.emp_name",
-          emp_branch_id: 1,
-    
-        }).fetch()
-        return res.json({
-          message: 'Create Complele'
-        })
-      },
+       PostemployeeCreate: async function (req, res) {
+    var newname = Date.now();
+    var filename = Date.now()+".jpg";
+    req.file('filetoupload').upload({
+      dirname: require('path').resolve(sails.config.appPath, 'assets/images'),
+      saveAs: newname + '.jpg',
+      maxBytes: 1000000
+    }, function (err, uploadedFiles) {
+    });
+    var data = await Employees.create({
+      emp_name: req.body.emp_name,
+      emp_salary: req.body.emp_salary,
+      emp_address: req.body.emp_address,
+      emp_tel: req.body.emp_tel,
+      emp_emer_con_name: req.body.emp_emer_con_name,
+      emp_emer_con_relation: req.body.emp_emer_con_relation,
+      emp_emer_con_address: req.body.emp_emer_con_address,
+      emp_emer_con_tel: req.body.emp_emer_con_tel,
+      emp_branch_id: req.body.emp_branch_id,
+      emp_id_card: filename
+    }).fetch()
+    return res.json({
+      message: 'Create Complele',
+      data :data
+    })
+  },
 
 };
 

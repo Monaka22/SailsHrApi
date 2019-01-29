@@ -23,7 +23,7 @@ module.exports = {
       type:'number'
     },
     benefit_emp_id:{
-      model:'employee'
+      model:'employees'
     },
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
