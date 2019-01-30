@@ -46,6 +46,50 @@ module.exports = {
       data :data
     })
   },
-
+  PostemployeeUpdate: async function (req, res) {
+    var data = await Employees.update({id: req.body.id}).set({
+      emp_name: req.body.emp_name,
+      emp_salary: req.body.emp_salary,
+      emp_address: req.body.emp_address,
+      emp_tel: req.body.emp_tel,
+      emp_emer_con_name: req.body.emp_emer_con_name,
+      emp_emer_con_relation: req.body.emp_emer_con_relation,
+      emp_emer_con_address: req.body.emp_emer_con_address,
+      emp_emer_con_tel: req.body.emp_emer_con_tel,
+      emp_branch_id: req.body.emp_branch_id,
+      //emp_id_card: filename
+    })
+    const id = req.body.id;
+   let oldpath = await Employees.find({where:{id:id}})
+   const oldfilename = JSON.parse(JSON.stringify(oldpath[0]));
+  const filename = oldfilename.emp_id_card;
+  sails.log(filename);
+    req.file('filetoupload').upload({
+      dirname: require('path').resolve(sails.config.appPath, 'assets/images'),
+      saveAs: filename,
+      maxBytes: 1000000
+    }, function (err, uploadedFiles) {
+      if(err)throw err;
+    });
+    return res.json({
+      message: 'update Complele',
+      data :data
+    })
+  },
+  PostemployeeDelete: async function (req, res) {
+    const id = req.body.id
+    await Employees.destroy({
+      id: id
+    }).exec(function (err) {
+      if (err) {
+        return res.sendStaus(500, {
+          error: "database error"
+        })
+      }
+      return res.json({
+        message: 'Delete sucsess'
+      })
+    })
+  }
 };
 
