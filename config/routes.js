@@ -56,10 +56,10 @@ module.exports.routes = {
   'POST /user/delete': 'UserController.PostuserDelete',
   //employee API
   'GET /emp/datatable': 'EmployeesController.GetemployeeDatatable',
-  'POST /emp/create': 'EmployeesController.PostemployeeCreate', 
+  'POST /emp/create': 'EmployeesController.PostemployeeCreate',
   'GET /emp/:id/view': 'EmployeesController.GetemployeeById',
   'POST /emp/update': 'EmployeesController.PostemployeeUpdate',
-  'POST /emp/delete':'EmployeesController.PostemployeeDelete',
+  'POST /emp/delete': 'EmployeesController.PostemployeeDelete',
   //benefit API
   'GET /benefit/datatable': 'BenefitController.GetbenefitDatatable',
   'POST /benefit/create': 'BenefitController.PostbenefitCreate',
@@ -78,35 +78,35 @@ module.exports.routes = {
   'GET /positionemp/:id/view': 'PositionemployeeController.GetpositionempById',
   'POST /positionemp/update': 'PositionemployeeController.PostpositionempUpdate',
   'POST /positionemp/delete': 'PositionemployeeController.PostpositionempDelete',
- //Costdata API
- 'GET /costdata/datatable': 'CostdataController.GetcostdataDatatable',
- 'POST /costdata/create': 'CostdataController.PostcostdataCreate',
- 'GET /costdata/:id/view': 'CostdataController.GetcostdataById',
- 'POST /costdata/update': 'CostdataController.PostcostdataUpdate',
- 'POST /costdata/delete': 'CostdataController.PostcostdataDelete',
- //Projectmanage API
- 'GET /projectmanage/datatable': 'ProjectmanageController.GetprojectmanageDatatable',
- 'POST /projectmanage/create': 'ProjectmanageController.PostprojectmanageCreate',
- 'GET /projectmanage/:id/view': 'ProjectmanageController.GetprojectmanageById',
- 'POST /projectmanage/update': 'ProjectmanageController.PostprojectmanageUpdate',
- 'POST /projectmanage/delete': 'ProjectmanageController.PostprojectmanageDelete',
-//Team API
-'GET /team/datatable': 'TeamController.GetteamDatatable',
-'POST /team/create': 'TeamController.PostteamCreate',
-'GET /team/:id/view': 'TeamController.GetteamById',
-'POST /team/update': 'TeamController.PostteamUpdate',
-'POST /team/delete': 'TeamController.PostteamDelete',
-//Projectaddit API
-'GET /projectaddit/datatable': 'ProjectadditController.GetprojectadditDatatable',
-'POST /projectaddit/create': 'ProjectadditController.PostprojectadditCreate',
-'GET /projectaddit/:id/view': 'ProjectadditController.GetprojectadditById',
-'POST /projectaddit/update': 'ProjectadditController.PostprojectadditUpdate',
-'POST /projectaddit/delete': 'ProjectadditController.PostprojectadditDelete',
-//branch cost API
-'GET /branchcost/addit/:id/view':'BranchadditController.GetbranchcostGetAdditByid',
-'GET /branchcost/fixcost/:id/view':'BranchadditController.GetbranchcostGetFixcostByid',
-
-
+  //Costdata API
+  'GET /costdata/datatable': 'CostdataController.GetcostdataDatatable',
+  'POST /costdata/create': 'CostdataController.PostcostdataCreate',
+  'GET /costdata/:id/view': 'CostdataController.GetcostdataById',
+  'POST /costdata/update': 'CostdataController.PostcostdataUpdate',
+  'POST /costdata/delete': 'CostdataController.PostcostdataDelete',
+  //Projectmanage API
+  'GET /projectmanage/datatable': 'ProjectmanageController.GetprojectmanageDatatable',
+  'POST /projectmanage/create': 'ProjectmanageController.PostprojectmanageCreate',
+  'GET /projectmanage/:id/view': 'ProjectmanageController.GetprojectmanageById',
+  'POST /projectmanage/update': 'ProjectmanageController.PostprojectmanageUpdate',
+  'POST /projectmanage/delete': 'ProjectmanageController.PostprojectmanageDelete',
+  //Team API
+  'GET /team/datatable': 'TeamController.GetteamDatatable',
+  'POST /team/create': 'TeamController.PostteamCreate',
+  'GET /team/:id/view': 'TeamController.GetteamById',
+  'POST /team/update': 'TeamController.PostteamUpdate',
+  'POST /team/delete': 'TeamController.PostteamDelete',
+  //Projectaddit API
+  'GET /projectaddit/datatable': 'ProjectadditController.GetprojectadditDatatable',
+  'POST /projectaddit/create': 'ProjectadditController.PostprojectadditCreate',
+  'GET /projectaddit/:id/view': 'ProjectadditController.GetprojectadditById',
+  'POST /projectaddit/update': 'ProjectadditController.PostprojectadditUpdate',
+  'POST /projectaddit/delete': 'ProjectadditController.PostprojectadditDelete',
+  //branch cost API
+  'GET /branchcost/addit/:id/view': 'BranchadditController.GetbranchcostGetAdditByid',
+  'GET /branchcost/fixcost/:id/view': 'BranchadditController.GetbranchcostGetFixcostByid',
+  //Employee Benefit Api
+  'GET /employee/benefit/:id/view': 'BenefitController.GetEmployeeBenefitGetByid',
 
 
 
