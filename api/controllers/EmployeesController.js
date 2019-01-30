@@ -90,6 +90,21 @@ module.exports = {
         message: 'Delete sucsess'
       })
     })
-  }
+  },
+  GetemployeeById: async function (req, res) {
+    const id = req.param('id')
+    if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
+      let data = await Employees.findOne({
+        id: id
+      });//.populate('fixcost_branch_id');
+      if (data) {
+        return res.json({
+          data: data,
+          message: 'Load By id sucess'
+        })
+      }
+      return res.sendStatus(404);
+    }
+  },
 };
 

@@ -57,7 +57,7 @@ module.exports.routes = {
   //employee API
   'GET /emp/datatable': 'EmployeesController.GetemployeeDatatable',
   'POST /emp/create': 'EmployeesController.PostemployeeCreate', 
-  // 'GET /emp/:id/view': 'EmployeesController.GetemployeeById',
+  'GET /emp/:id/view': 'EmployeesController.GetemployeeById',
   'POST /emp/update': 'EmployeesController.PostemployeeUpdate',
   'POST /emp/delete':'EmployeesController.PostemployeeDelete',
   //benefit API
