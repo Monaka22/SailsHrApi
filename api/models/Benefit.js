@@ -22,6 +22,12 @@ module.exports = {
     benefit_price:{
       type:'number'
     },
+    benefit_date:{
+      type: 'ref', columnType: 'datetime'
+    },
+    benefit_note:{
+      type:'string'
+    },
     benefit_emp_id:{
       model:'employees'
     },

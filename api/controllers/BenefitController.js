@@ -24,6 +24,8 @@ module.exports = {
     await Benefit.create({
       benefit_title: req.body.benefit_title,
       benefit_price: req.body.benefit_price,
+      benefit_date : req.body.benefit_date,
+      benefit_note : req.body.benefit_note,
       benefit_emp_id: req.body.benefit_emp_id,
     }).fetch()
     return res.json({
@@ -53,6 +55,8 @@ module.exports = {
       }).set({
         benefit_title: req.body.benefit_title,
         benefit_price: req.body.benefit_price,
+        benefit_date : req.body.benefit_date,
+        benefit_note : req.body.benefit_note,
         benefit_emp_id: req.body.benefit_emp_id,
       })
       return res.json({
