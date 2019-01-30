@@ -96,7 +96,7 @@ module.exports = {
     if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
       let data = await Employees.findOne({
         id: id
-      });//.populate('fixcost_branch_id');
+      }).populate('emp_branch_id');
       if (data) {
         return res.json({
           data: data,
