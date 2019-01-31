@@ -107,6 +107,8 @@ module.exports.routes = {
   'GET /branchcost/fixcost/:id/view': 'BranchadditController.GetbranchcostGetFixcostByid',
   //Employee Benefit Api
   'GET /employee/benefit/:id/view': 'BenefitController.GetEmployeeBenefitGetByid',
+  //Emp find Position API
+  'GET /emp/position/:id/view' : 'PositionemployeeController.GetEmployeePositionGetByid'
 
 
 
