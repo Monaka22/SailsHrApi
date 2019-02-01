@@ -112,7 +112,8 @@ module.exports.routes = {
   'GET /emp/position/:id/view' : 'PositionemployeeController.GetEmployeePositionGetByid',
   //Chaiwat API
   'GET /555' : 'TeamController.TestDatetotime',
-
+  //project position API
+  'GET /position/emp/:id/view' : 'PositionemployeeController.GetPositionEmployeeGetByid',
 
 
 

@@ -96,6 +96,18 @@ module.exports = {
       return res.sendStatus(404);
     }
   },
-
+  GetPositionEmployeeGetByid: async function(req,res){
+    const id = req.param('id')
+    if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
+      let data = await Positionemployee.find({where:{position_id:id}}).populate('emp_id');
+      if (data) {
+        return res.json({
+          data: data,
+          message: 'Load By id sucess'
+        })
+      }
+      return res.sendStatus(404);
+    }
+  },
 
 };
