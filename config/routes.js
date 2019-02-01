@@ -78,6 +78,7 @@ module.exports.routes = {
   'GET /positionemp/:id/view': 'PositionemployeeController.GetpositionempById',
   'POST /positionemp/update': 'PositionemployeeController.PostpositionempUpdate',
   'POST /positionemp/delete': 'PositionemployeeController.PostpositionempDelete',
+  
   //Costdata API
   'GET /costdata/datatable': 'CostdataController.GetcostdataDatatable',
   'POST /costdata/create': 'CostdataController.PostcostdataCreate',
@@ -108,7 +109,9 @@ module.exports.routes = {
   //Employee Benefit Api
   'GET /employee/benefit/:id/view': 'BenefitController.GetEmployeeBenefitGetByid',
   //Emp find Position API
-  'GET /emp/position/:id/view' : 'PositionemployeeController.GetEmployeePositionGetByid'
+  'GET /emp/position/:id/view' : 'PositionemployeeController.GetEmployeePositionGetByid',
+  //Chaiwat API
+  'GET /555' : 'TeamController.TestDatetotime',
 
 
 

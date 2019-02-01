@@ -86,7 +86,35 @@ module.exports = {
             message: 'Delete sucsess'
           })
         })
+      },
+      TestDatetotime: async function (req, res) {
+        var  myDate = "2019-02-13";
+        var  myDate2 = "2019-02-15";
+        myDate = myDate.split("-");
+        myDate2 = myDate2.split("-");
+        var newDate = myDate[2] + "/" + myDate[1] + "/" + myDate[0];
+        var newDate2 = myDate2[2] + "/" + myDate2[1] + "/" + myDate2[0];
+        // var days = Math.floor(31622400 / (3600*24));
+        // return res.json({day : days,
+        // date : newDate
+        // })
+        timestamp = parseDMY(newDate).getTime();
+        timestamp2 = parseDMY(newDate2).getTime();
+        var day = timestamp2-timestamp;
+        day =  Math.floor((day / (3600*24))/1000);
+    
+        return res.send({
+          date : newDate,
+          timestamp : timestamp,
+          day : day
+        })
+        
+    
       }
 
 };
-
+function parseDMY(s) {
+  var b = s.split(/\D/);
+  var d = new Date(b[2], --b[1], b[0]);
+  return d && d.getMonth() == b[1]? d : new Date(NaN);
+}

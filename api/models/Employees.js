@@ -18,6 +18,9 @@ module.exports = {
     emp_name:{
       type : 'string'
     },
+    emp_nickname:{
+      type: 'string'
+    },
     emp_salary:{
       type : 'number'
     },
