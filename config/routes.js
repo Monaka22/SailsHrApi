@@ -114,6 +114,8 @@ module.exports.routes = {
   'GET /555' : 'TeamController.TestDatetotime',
   //project position API
   'GET /position/emp/:id/view' : 'PositionemployeeController.GetPositionEmployeeGetByid',
+  //projecc addit API
+  'GET /project/projectaddit/:id/view' : 'ProjectadditController.GetAdditProjectGetByid',
 
 
 
