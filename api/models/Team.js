@@ -9,22 +9,30 @@ module.exports = {
 
   primaryKey: 'id',
   attributes: {
-    id:{
+    id: {
       type: 'number',
       autoIncrement: true,
       columnName: 'team_id'
     },
-    project_id:{
-      model : 'projectmanage'
+    project_id: {
+      model: 'projectmanage'
     },
-    emp_id:{
-      model : 'employees'
+    emp_id: {
+      model: 'employees'
     },
-    emp_start_date : {
-      type: 'ref', columnType: 'date'
+    emp_start_date: {
+      type: 'ref',
+      columnType: 'date'
     },
     emp_end_date: {
-      type: 'ref', columnType: 'date'
+      type: 'ref',
+      columnType: 'date'
+    },
+    emp_workday: {
+      type: 'number'
+    },
+    emp_sprint: {
+      type: 'number'
     }
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
@@ -43,4 +51,3 @@ module.exports = {
   },
 
 };
-
