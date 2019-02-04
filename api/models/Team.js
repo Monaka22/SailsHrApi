@@ -14,9 +14,6 @@ module.exports = {
       autoIncrement: true,
       columnName: 'team_id'
     },
-    project_id: {
-      model: 'projectmanage'
-    },
     emp_id: {
       model: 'employees'
     },

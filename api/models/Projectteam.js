@@ -1,5 +1,5 @@
 /**
- * Projectmanage.js
+ * Projectteam.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -9,34 +9,17 @@ module.exports = {
 
   primaryKey: 'id',
   attributes: {
-    id:{
+    id: {
       type: 'number',
       autoIncrement: true,
-      columnName: 'project_id'
+      columnName: 'pjt_id'
     },
-    project_name:{
-      type : 'string'
+    project_id: {
+      model: 'projectmanage'
     },
-    project_costomer_name:{
-      type : 'string'
-    },
-    project_start_date:{
-      type: 'ref', columnType: 'date'
-    },
-    project_end_date:{
-      type: 'ref', columnType: 'date'
-    },
-    project_team_name : {
-      type : 'string'
-    },
-    project_total_cost :{
-      type : 'number'
-    },
-    project_note: {
-      type : 'string'
-    },
-    
-    
+    team_id: {
+      model: 'team'
+    }
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗

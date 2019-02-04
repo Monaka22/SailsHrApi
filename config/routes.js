@@ -48,25 +48,25 @@ module.exports.routes = {
   'GET /branchaddit/:id/view': 'BranchadditController.GetbranchadditById',
   'POST /branchaddit/update': 'BranchadditController.PostbranchadditUpdate',
   'POST /branchaddit/delete': 'BranchadditController.PostbranchadditDelete',
-  //user API
+  //User API
   'GET /user/datatable': 'UserController.GetuserDatatable',
   'POST /user/create': 'UserController.PostuserCreate',
   'GET /user/:id/view': 'UserController.GetuserById',
   'POST /user/update': 'UserController.PostuserUpdate',
   'POST /user/delete': 'UserController.PostuserDelete',
-  //employee API
+  //Employee API
   'GET /emp/datatable': 'EmployeesController.GetemployeeDatatable',
   'POST /emp/create': 'EmployeesController.PostemployeeCreate',
   'GET /emp/:id/view': 'EmployeesController.GetemployeeById',
   'POST /emp/update': 'EmployeesController.PostemployeeUpdate',
   'POST /emp/delete': 'EmployeesController.PostemployeeDelete',
-  //benefit API
+  //Benefit API
   'GET /benefit/datatable': 'BenefitController.GetbenefitDatatable',
   'POST /benefit/create': 'BenefitController.PostbenefitCreate',
   'GET /benefit/:id/view': 'BenefitController.GetbenefitById',
   'POST /benefit/update': 'BenefitController.PostbenefitUpdate',
   'POST /benefit/delete': 'BenefitController.PostbenefitDelete',
-  //fixcost API
+  //Fixcost API
   'GET /fixcost/datatable': 'FixcostController.GetfixcostDatatable',
   'POST /fixcost/create': 'FixcostController.PostfixcostCreate',
   'GET /fixcost/:id/view': 'FixcostController.GetfixcostById',
@@ -78,7 +78,6 @@ module.exports.routes = {
   'GET /positionemp/:id/view': 'PositionemployeeController.GetpositionempById',
   'POST /positionemp/update': 'PositionemployeeController.PostpositionempUpdate',
   'POST /positionemp/delete': 'PositionemployeeController.PostpositionempDelete',
-  
   //Costdata API
   'GET /costdata/datatable': 'CostdataController.GetcostdataDatatable',
   'POST /costdata/create': 'CostdataController.PostcostdataCreate',
@@ -103,20 +102,25 @@ module.exports.routes = {
   'GET /projectaddit/:id/view': 'ProjectadditController.GetprojectadditById',
   'POST /projectaddit/update': 'ProjectadditController.PostprojectadditUpdate',
   'POST /projectaddit/delete': 'ProjectadditController.PostprojectadditDelete',
-  //branch cost API
+  //Branch cost API
   'GET /branchcost/addit/:id/view': 'BranchadditController.GetbranchcostGetAdditByid',
   'GET /branchcost/fixcost/:id/view': 'BranchadditController.GetbranchcostGetFixcostByid',
   //Employee Benefit Api
   'GET /employee/benefit/:id/view': 'BenefitController.GetEmployeeBenefitGetByid',
-  //Emp find Position API
-  'GET /emp/position/:id/view' : 'PositionemployeeController.GetEmployeePositionGetByid',
+  //Employee find Position API
+  'GET /emp/position/:id/view': 'PositionemployeeController.GetEmployeePositionGetByid',
   //Chaiwat API
-  'GET /555' : 'TeamController.TestDatetotime',
-  //project position API
-  'GET /position/emp/:id/view' : 'PositionemployeeController.GetPositionEmployeeGetByid',
-  //projecc addit API
-  'GET /project/projectaddit/:id/view' : 'ProjectadditController.GetAdditProjectGetByid',
-
+  'GET /555': 'TeamController.TestDatetotime',
+  //Position find Employee API
+  'GET /position/emp/:id/view': 'PositionemployeeController.GetPositionEmployeeGetByid',
+  //Projecc addit API
+  'GET /project/projectaddit/:id/view': 'ProjectadditController.GetAdditProjectGetByid',
+  //ProjectTeam API
+  'GET /projectteam/datatable': 'ProjectteamController.GetprojectteamDatatable',
+  'POST /projectteam/create': 'ProjectteamController.PostprojectteamCreate',
+  'GET /projectteam/:id/view': 'ProjectteamController.GetprojectteamById',
+  'POST /projectteam/update': 'ProjectteamController.PostprojectteamUpdate',
+  'POST /projectteam/delete': 'ProjectteamController.PostprojectteamDelete',
 
 
 
