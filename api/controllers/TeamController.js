@@ -22,10 +22,11 @@ module.exports = {
   },
   PostteamCreate: async function (req, res) {
     let pushdata = req.body.pushdataarray
+    let project_id = req.body.project_id
         for (let i = 0; i < pushdata.length; i++) {
           await Team.create({
             emp_id: pushdata[i],
-            project_id : req.body.project_id
+            project_id : project_id
           }).fetch()
         }
     // let empdate = req.body.emp_start_date;
