@@ -35,7 +35,7 @@ module.exports = {
       model: 'projectmanage'
     },
     position_id:{
-      type : 'number'
+      model : 'position'
     }
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗

@@ -150,7 +150,7 @@ module.exports = {
     const id = req.param('id')
     // let position_id = req.param('position_id');
         if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
-          let data = await Team.find({where:{project_id:id}}).populate('emp_id');
+          let data = await Team.find({where:{project_id:id}}).populate('emp_id').populate('position_id');
 
           if (data) {
             return res.json({
