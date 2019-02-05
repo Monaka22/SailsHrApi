@@ -71,8 +71,8 @@ module.exports = {
   },
   PostteamUpdate: async function (req, res) {
     try {
-        let empdate = req.body.emp_start_date[i];
-        let empdate2 = req.body.emp_end_date[i];
+        let empdate = req.body.emp_start_date;
+        let empdate2 = req.body.emp_end_date;
         empdate = empdate.split("-");
         empdate2 = empdate2.split("-");
         let newDate = empdate[2] + "/" + empdate[1] + "/" + empdate[0];
@@ -103,6 +103,7 @@ module.exports = {
         err: err,
         message: message
       })
+      throw err
     }
   },
   PostteamDelete: async function (req, res) {
