@@ -23,7 +23,7 @@ module.exports = {
   PostteamCreate: async function (req, res) {
     let pushdata = req.body.pushdataarray
         for (let i = 0; i < pushdata.length; i++) {
-          await Projectaddit.create({
+          await Team.create({
             emp_id: pushdata[i],
             project_id : req.body.project_id
           }).fetch()
