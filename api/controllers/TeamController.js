@@ -71,26 +71,25 @@ module.exports = {
   },
   PostteamUpdate: async function (req, res) {
     try {
-      let empdate = req.body.emp_start_date;
-      let empdate2 = req.body.emp_end_date;
-      empdate = empdate.split("-");
-      empdate2 = empdate2.split("-");
-      let newDate = empdate[2] + "/" + empdate[1] + "/" + empdate[0];
-      let newDate2 = empdate2[2] + "/" + empdate2[1] + "/" + empdate2[0];
-      timestamp = parseDMY(newDate).getTime();
-      timestamp2 = parseDMY(newDate2).getTime();
-      let day = timestamp2 - timestamp;
-      day = Math.floor((day / (3600 * 24)) / 1000);
-      let emp_sprint = (day / 7 | 0) + 1;
-      await Team.update({
-        id: req.body.id
-      }).set({
-        emp_start_date: req.body.emp_start_date,
-        emp_end_date: req.body.emp_end_date,
-        emp_workday: day,
-        emp_sprint: emp_sprint,
-        emp_id: req.body.emp_id
-      })
+        let empdate = req.body.emp_start_date[i];
+        let empdate2 = req.body.emp_end_date[i];
+        empdate = empdate.split("-");
+        empdate2 = empdate2.split("-");
+        let newDate = empdate[2] + "/" + empdate[1] + "/" + empdate[0];
+        let newDate2 = empdate2[2] + "/" + empdate2[1] + "/" + empdate2[0];
+        timestamp = parseDMY(newDate).getTime();
+        timestamp2 = parseDMY(newDate2).getTime();
+        let day = timestamp2 - timestamp;
+        day = Math.floor((day / (3600 * 24)) / 1000);
+        let emp_sprint = (day / 7 | 0) + 1;
+        await Team.update({
+          id: req.body.id
+        }).set({
+          emp_start_date: req.body.emp_start_date,
+          emp_end_date: req.body.emp_end_date,
+          emp_workday: day,
+          emp_sprint: emp_sprint,
+        })
       return res.json({   
         message: 'Update sucsess'
       })
