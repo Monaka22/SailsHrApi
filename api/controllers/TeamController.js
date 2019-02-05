@@ -148,8 +148,10 @@ module.exports = {
   },
   GetTeamProjectGetByid : async function (req,res) {
     const id = req.param('id')
+    // let position_id = req.param('position_id');
         if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
           let data = await Team.find({where:{project_id:id}}).populate('emp_id');
+
           if (data) {
             return res.json({
               data: data,
@@ -157,7 +159,7 @@ module.exports = {
             })
           }
           return res.sendStatus(404);
-        }
+         }
   }
 
 };
