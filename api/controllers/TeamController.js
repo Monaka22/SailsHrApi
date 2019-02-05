@@ -29,7 +29,7 @@ module.exports = {
           await Team.create({
             emp_id: pushdata[i],
             project_id : project_id,
-            positionname : positionid
+            position_id : positionid
           }).fetch()
         }
     // let empdate = req.body.emp_start_date;
