@@ -23,6 +23,7 @@ module.exports = {
   PostteamCreate: async function (req, res) {
     let pushdata = req.body.pushdataarray
     let project_id = req.body.project_id
+    sails.log(project_id)
         for (let i = 0; i < pushdata.length; i++) {
           await Team.create({
             emp_id: pushdata[i],
@@ -142,8 +143,19 @@ module.exports = {
       day: day,
       sprint: emp_sprint
     })
-
-
+  },
+  GetTeamProjectGetByid : async function (req,res) {
+    const id = req.param('id')
+        if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
+          let data = await Team.find({where:{project_id:id}}).populate('emp_id');
+          if (data) {
+            return res.json({
+              data: data,
+              message: 'Load By id sucess'
+            })
+          }
+          return res.sendStatus(404);
+        }
   }
 
 };

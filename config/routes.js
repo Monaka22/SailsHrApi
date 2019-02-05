@@ -117,6 +117,8 @@ module.exports.routes = {
   'GET /project/projectaddit/:id/view': 'ProjectadditController.GetAdditProjectGetByid',
   //test array
   'POST /array': 'CostdataController.Array',
+  //Teamproject API
+  'GET /project/team/:id/view' : 'TeamController.GetTeamProjectGetByid'
 
 
 
