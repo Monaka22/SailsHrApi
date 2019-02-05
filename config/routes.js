@@ -121,6 +121,8 @@ module.exports.routes = {
   'GET /projectteam/:id/view': 'ProjectteamController.GetprojectteamById',
   'POST /projectteam/update': 'ProjectteamController.PostprojectteamUpdate',
   'POST /projectteam/delete': 'ProjectteamController.PostprojectteamDelete',
+  //test array
+  'GET /array': 'CostdataController.Array',
 
 
 

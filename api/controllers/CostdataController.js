@@ -88,8 +88,20 @@ module.exports = {
             message: 'Delete sucsess'
           })
         })
-      }
-    
+      },
+      Array :async function(req,res){
+        let A = req.body.project_addit_title
+        let A2 = req.body.project_addit_price
+        for (let i = 0; i < A.length; i++) {
+          await Projectaddit.create({
+            project_addit_title: A[i],
+            project_addit_price: A2[i]
+          }).fetch()
+        }
+        return res.json({
+          message: 'Create sucsess'
+        })
 
+      }
 };
 

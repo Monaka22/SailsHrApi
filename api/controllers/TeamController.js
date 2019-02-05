@@ -7,7 +7,7 @@
 
 module.exports = {
   GetteamDatatable: async function (req, res) {
-    let data = await Team.find().populate('project_id').populate('emp_id').populate('project_id');
+    let data = await Team.find().populate('emp_id');
     // const branch = JSON.parse(JSON.stringify(branch_addit_branch_id[0]));
     //             const branch_name = branch.branch_addit_branch_id.branch_name;
     //             const branch_id = branch.branch_addit_branch_id.id;
