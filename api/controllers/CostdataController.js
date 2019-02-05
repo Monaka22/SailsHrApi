@@ -90,10 +90,9 @@ module.exports = {
         })
       },
       Array :async function(req,res){
-        let A = req.body.ruleFormAddit
-        sails.log(A)
-        // let A2 = A[0].project_addit_title
-        // sails.log(A2)
+        let A = req.body.pusharray
+        let A2 = A[0].project_addit_title
+        sails.log(A2)
         // for (let i = 0; i < A.length; i++) {
         //   await Projectaddit.create({
         //     project_addit_title: A[i],
