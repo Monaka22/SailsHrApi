@@ -115,12 +115,6 @@ module.exports.routes = {
   'GET /position/emp/:id/view': 'PositionemployeeController.GetPositionEmployeeGetByid',
   //Projecc addit API
   'GET /project/projectaddit/:id/view': 'ProjectadditController.GetAdditProjectGetByid',
-  //ProjectTeam API
-  'GET /projectteam/datatable': 'ProjectteamController.GetprojectteamDatatable',
-  'POST /projectteam/create': 'ProjectteamController.PostprojectteamCreate',
-  'GET /projectteam/:id/view': 'ProjectteamController.GetprojectteamById',
-  'POST /projectteam/update': 'ProjectteamController.PostprojectteamUpdate',
-  'POST /projectteam/delete': 'ProjectteamController.PostprojectteamDelete',
   //test array
   'POST /array': 'CostdataController.Array',
 

@@ -30,6 +30,9 @@ module.exports = {
     },
     emp_sprint: {
       type: 'number'
+    },
+    project_id:{
+      model: 'projectmanage'
     }
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
