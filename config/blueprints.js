@@ -7,6 +7,7 @@
  *
  * For details and more available options, see:
  * https://sailsjs.com/config/blueprints
+ *
  */
 
 module.exports.blueprints = {
@@ -17,7 +18,7 @@ module.exports.blueprints = {
   *                                                                          *
   ***************************************************************************/
 
-  // actions: false,
+  actions: false,
 
 
   /***************************************************************************
@@ -26,7 +27,7 @@ module.exports.blueprints = {
   *                                                                          *
   ***************************************************************************/
 
-  // rest: true,
+  rest: false,
 
 
   /***************************************************************************
@@ -36,6 +37,36 @@ module.exports.blueprints = {
   *                                                                          *
   ***************************************************************************/
 
-  // shortcuts: true,
+  shortcuts: false,
+
+
+  /***************************************************************************
+  *                                                                          *
+  * Optional mount path prefix for all implicit blueprint routes ("shadows") *
+  *                                                                          *
+  ***************************************************************************/
+
+  // prefix: '',
+
+
+  /***************************************************************************
+  *                                                                          *
+  * Whether to use plural model names in blueprint routes                    *
+  * (e.g. `/users` for the `User` model)                                     *
+  *                                                                          *
+  ***************************************************************************/
+
+  // pluralize: false,
+
+
+  /***************************************************************************
+  *                                                                          *
+  * Automatically enroll sockets requesting the `find` blueprint action to   *
+  * receive special notifications about any new records for the same model.  *
+  * (Only notifies for records created with the `create` blueprint action.)  *
+  *                                                                          *
+  ***************************************************************************/
+
+  // autoWatch: true,
 
 };

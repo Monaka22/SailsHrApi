@@ -10,26 +10,20 @@
 
 module.exports.routes = {
 
-  /***************************************************************************
-   *                                                                          *
-   * Make the view located at `views/homepage.ejs` your home page.            *
-   *                                                                          *
-   * (Alternatively, remove this and add an `index.html` file in your         *
-   * `assets` directory)                                                      *
-   *                                                                          *
-   ***************************************************************************/
 
-  '/': {
-    view: 'pages/homepage'
-  },
-  'OPTIONS /*': {
-    skipAssets: true,
-    fn: function (req, res) {
-      return res.json({
-        message: 'Options ok.'
-      })
-    }
-  },
+  //  ╦ ╦╔═╗╔╗ ╔═╗╔═╗╔═╗╔═╗╔═╗
+  //  ║║║║╣ ╠╩╗╠═╝╠═╣║ ╦║╣ ╚═╗
+  //  ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
+
+  /***************************************************************************
+  *                                                                          *
+  * Make the view located at `views/homepage.ejs` your home page.            *
+  *                                                                          *
+  * (Alternatively, remove this and add an `index.html` file in your         *
+  * `assets` directory)                                                      *
+  *                                                                          *
+  ***************************************************************************/
+
   //Branch API
   'GET /branch/datatable': 'BranchController.GetBranchDatatable',
   'POST /branch/create': 'BranchController.PostBranchCreate',
@@ -49,11 +43,11 @@ module.exports.routes = {
   'POST /branchaddit/update': 'BranchadditController.PostbranchadditUpdate',
   'POST /branchaddit/delete': 'BranchadditController.PostbranchadditDelete',
   //User API
-  'GET /user/datatable': 'UserController.GetuserDatatable',
-  'POST /user/create': 'UserController.PostuserCreate',
-  'GET /user/:id/view': 'UserController.GetuserById',
-  'POST /user/update': 'UserController.PostuserUpdate',
-  'POST /user/delete': 'UserController.PostuserDelete',
+  // 'GET /user/datatable': 'UserController.GetuserDatatable',
+  // 'POST /user/create': 'UserController.PostuserCreate',
+  // 'GET /user/:id/view': 'UserController.GetuserById',
+  // 'POST /user/update': 'UserController.PostuserUpdate',
+  // 'POST /user/delete': 'UserController.PostuserDelete',
   //Employee API
   'GET /emp/datatable': 'EmployeesController.GetemployeeDatatable',
   'POST /emp/create': 'EmployeesController.PostemployeeCreate',
@@ -119,24 +113,37 @@ module.exports.routes = {
   //'POST /array': 'CostdataController.Array',
   //Teamproject API
   'GET /project/team/:id/view' : 'TeamController.GetTeamProjectGetByid',
-  //authen
+  
+
+  /***************************************************************************
+  *                                                                          *
+  * More custom routes here...                                               *
+  * (See https://sailsjs.com/config/routes for examples.)                    *
+  *                                                                          *
+  * If a request to a URL doesn't match any of the routes in this file, it   *
+  * is matched against "shadow routes" (e.g. blueprint routes).  If it does  *
+  * not match any of those, it is matched against static assets.             *
+  *                                                                          *
+  ***************************************************************************/
+
+
+  //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
+  //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
+  //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
+
   'post /api/users/login': 'UserController.login',
   'post /api/users/logout': 'UserController.logout',
   'post /api/users/register': 'UserController.register',
-  'post /api/test': 'PageController.test',
+  //'post /api/test': 'PageController.test',
+
+  //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
+  //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
+  //  ╚╩╝╚═╝╚═╝╩ ╩╚═╝╚═╝╩ ╩╚═╝
 
 
-
-  /***************************************************************************
-   *                                                                          *
-   * More custom routes here...                                               *
-   * (See https://sailsjs.com/config/routes for examples.)                    *
-   *                                                                          *
-   * If a request to a URL doesn't match any of the routes in this file, it   *
-   * is matched against "shadow routes" (e.g. blueprint routes).  If it does  *
-   * not match any of those, it is matched against static assets.             *
-   *                                                                          *
-   ***************************************************************************/
+  //  ╔╦╗╦╔═╗╔═╗
+  //  ║║║║╚═╗║
+  //  ╩ ╩╩╚═╝╚═╝
 
 
 };

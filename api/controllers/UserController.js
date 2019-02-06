@@ -7,7 +7,7 @@
 
 var bcrypt = require('bcryptjs')
 var jwt = require('jsonwebtoken')
-//var Emailaddresses = require('machinepack-emailaddresses')
+var Emailaddresses = require('machinepack-emailaddresses')
 
 module.exports = {
 	// patch /api/users/login

@@ -36,20 +36,22 @@
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     "SAILS_LOCALS": true,
     "io": true,
-    // "google": true,
+    // "moment": true,
+    // "bowser": true
     // ...etc.
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     // Make sure backend globals aren't indadvertently tolerated in our client-side JS:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     "sails": false,
-    "_": false
+    "_": false,
+    "async": false
     // ...and any other backend globals (e.g. `"Organization": false`)
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   },
 
   "rules": {
-    "no-undef": ["error"]
+    "no-undef": [2]
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // ^^Note: If you've enabled the "no-undef" rule in the top level .eslintrc file, then
     // the globalIds of Sails models should also be blacklisted above under "globals".

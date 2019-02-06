@@ -1,26 +1,15 @@
-# work
+# sails-jwt-login
 
-a [Sails v1](https://sailsjs.com) application
+This is an example of a simple device-agnostic backend that implements login, signup, and logout using [JSON Web Tokens](https://jwt.io/introduction/).  It is based on the [jwt-login](https://github.com/sails101/jwt-login) example, just upgraded to Sails 1.0 and modified to use cookies for web storage and the authorization header for other devices (eg mobile) to use.
 
+This is a multiple page app using the built-in templating system (EJS) in order to demonstrate keeping a "session" by storing the JWT in a cookie. It also has server code (but not frontend code) that handles authorization using a header.
 
-### Links
+To be clear however, this is not intended as a tutorial on building SPAs, which would normally use a framework like Vue or React.
 
-+ [Sails framework documentation](https://sailsjs.com/get-started)
-+ [Version notes / upgrading](https://sailsjs.com/documentation/upgrading)
-+ [Deployment tips](https://sailsjs.com/documentation/concepts/deployment)
-+ [Community support options](https://sailsjs.com/support)
-+ [Professional / enterprise options](https://sailsjs.com/enterprise)
+### Relevant bits
 
-
-### Version info
-
-This app was originally generated on Tue Jan 22 2019 11:22:51 GMT+0700 (+07) using Sails v1.1.0.
-
-<!-- Internally, Sails used [`sails-generate@1.16.4`](https://github.com/balderdashy/sails-generate/tree/v1.16.4/lib/core-generators/new). -->
-
-
-
-<!--
-Note:  Generators are usually run using the globally-installed `sails` CLI (command-line interface).  This CLI version is _environment-specific_ rather than app-specific, thus over time, as a project's dependencies are upgraded or the project is worked on by different developers on different computers using different versions of Node.js, the Sails dependency in its package.json file may differ from the globally-installed Sails CLI release it was originally generated with.  (Be sure to always check out the relevant [upgrading guides](https://sailsjs.com/upgrading) before upgrading the version of Sails used by your app.  If you're stuck, [get help here](https://sailsjs.com/support).)
--->
-
+* `assets/js/main.js` contains the all of the front-end Javascript that makes the AJAX calls to register new users, login, and logout.
+* `api/controllers/UserController.js` contains the back-end code for signing up and logging in users, including creating new JWTs.
+* `api/helpers/verify-token.js` is a global helper that does the actual verification of JWTs for every request, as dictated by `config/policies.js`.
+* `api/policies/isAuthenticated.js` contains the code for authenticating a user via JWT, and redirecting unauthorized users to the login page
+* `api/policies/checkForUser.js` is similar to `isAuthenticated.js`, but allows logged-out users to continue.  This is useful for things like the home page, which can display a customized welcome message to logged-in users but should be available to everyone.
