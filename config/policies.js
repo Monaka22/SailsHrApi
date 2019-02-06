@@ -20,11 +20,11 @@ module.exports.policies = {
 	//'*': true,
 	'*': 'checkForUser',
 	'*': 'isAuthenticated',
-	PageController: {
-		'*': 'checkForUser',
-		'*': 'isAuthenticated',
+	// PageController: {
+	// 	'*': 'checkForUser',
+	// 	'*': 'isAuthenticated',
 
-	},
+	// },
 
 	UserController: {
 		'*': 'isAuthenticated',
