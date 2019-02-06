@@ -116,10 +116,14 @@ module.exports.routes = {
   //Projecc addit API
   'GET /project/projectaddit/:id/view': 'ProjectadditController.GetAdditProjectGetByid',
   //test array
-  'POST /array': 'CostdataController.Array',
+  //'POST /array': 'CostdataController.Array',
   //Teamproject API
-  'GET /project/team/:id/view' : 'TeamController.GetTeamProjectGetByid'
-
+  'GET /project/team/:id/view' : 'TeamController.GetTeamProjectGetByid',
+  //authen
+  'post /api/users/login': 'UserController.login',
+  'post /api/users/logout': 'UserController.logout',
+  'post /api/users/register': 'UserController.register',
+  'post /api/test': 'PageController.test',
 
 
 
