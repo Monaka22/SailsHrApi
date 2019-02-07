@@ -1,82 +1,81 @@
 /**
  * UserController
  *
- * @description :: Server-side actions for handling incoming requests.
- * @help        :: See https://sailsjs.com/docs/concepts/actions
+ * @description :: Server-side logic for managing users
+ * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
+var bcrypt = require('bcryptjs')
+var jwt = require('jsonwebtoken')
+var Emailaddresses = require('machinepack-emailaddresses')
+
 module.exports = {
-  GetUserDatatable: async function (req, res) {
-    let data = await User.find()
+	// patch /api/users/login
+	login: async function(req, res) {
+		var user = await User.findOne({
+			username: req.body.username
+		})
+		if (!user) return res.notFound()
 
-    return res.json({
-      draw: 0,
-      recordsTotal: data.length,
-      recordsFiltered: data.length,
-      data: data
-    })
-  },
-  PostuserCreate: async function (req, res) {
-    await User.create({
-      user_username: req.body.user_username,
-      user_password: req.body.user_password,
-      user_role: req.body.user_role
-    }).fetch()
-    return res.json({
-      message: 'Create Complele'
-    })
-  },
-  GetuserById: async function (req, res) {
-    const id = req.param('id')
-    if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
-      let data = await User.findOne({
-        id: id
-      })
-      if (data) {
-        return res.json({
-          data: data,
-          message: 'Load By id sucess'
-        })
-      }
-      return res.sendStatus(404);
-    }
-  },
-  PostuserUpdate: async function (req,res) {
-    try {
+		await bcrypt.compare(req.body.password, user.password)
 
-        await User.update({
-          id: req.body.id
-        }).set({
-            user_username: req.body.user_username,
-            user_password: req.body.user_password,
-            user_role: req.body.user_role
-        })
-        return res.json({
-          message: 'Update sucsess'
-        })
-  
-      } catch (err) {
-        // sails.log(err)
-        // sails.log(JSON.stringify(err))
-        let message = await sails.helpers.error(err.code, '')
-        sails.log(err)
-        return res.badRequest({
-          err: err,
-          message: message
-        })
-      }
-  },
-  PostUserDelete: async function (req, res) {
-    const id = req.body.id
-    await User.destroy({id:id}).exec(function (err) {
-        if(err){
-            return res.sendStaus(500,{error : "database error"})
-        }
-        return res.json({
-            message : 'Delete sucsess'
-        })
-    })
+		// if no errors were thrown, then grant them a new token
+		// set these config vars in config/local.js, or preferably in config/env/production.js as an environment variable
+		var token = jwt.sign({user: user.id}, sails.config.custom.jwtSecret, {expiresIn:1616971152})// sails.config.jwtExpires})
+		// set a cookie on the client side that they can't modify unless they sign out (just for web apps)
+		res.cookie('sailsjwt', token, {
+			signed: true,
+			// domain: '.yourdomain.com', // always use this in production to whitelist your domain
+			maxAge: 1616971152//sails.config.jwtExpires
+		})
+		sails.log(token)
+		// provide the token to the client in case they want to store it locally to use in the header (eg mobile/desktop apps)
+		return res.ok(token)
+	},
 
-    },
+	// patch /api/users/logout
+	logout: function(req, res) {
+		res.clearCookie('sailsjwt')
+		req.user = null
+		return res.ok()
+	},
 
-};
+	// post /api/users/register
+	register: async function(req, res) {
+		if (_.isUndefined(req.body.username)) {
+			return res.badRequest('An username address is required.')
+		}
+
+		if (_.isUndefined(req.body.password)) {
+			return res.badRequest('A password is required.')
+		}
+
+		if (req.body.password.length < 8) {
+			return res.badRequest('Password must be at least 8 characters.')
+		}
+		sails.log(req.body)
+		var user = await sails.helpers.createUser({
+			username: req.body.username,
+			password: req.body.password,
+		})
+		sails.log(user)
+		// after creating a user record, log them in at the same time by issuing their first jwt token and setting a cookie
+		var token = jwt.sign({user: user.id}, sails.config.custom.jwtSecret, {expiresIn: 1616971152 })//sails.config.jwtExpires})
+		res.cookie('sailsjwt', token, {
+			signed: true,
+			// domain: '.yourdomain.com', // always use this in production to whitelist your domain
+			maxAge: 1616971152// sails.config.jwtExpires
+		})
+		sails.log(token)
+		// if this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
+		// send a 200 response letting the user agent know the signup was successful.
+		if (req.wantsJSON) {
+			return res.ok(token)
+			
+		}
+		
+		// otherwise if this is an HTML-wanting browser, redirect to /welcome.
+		return res.redirect('/welcome')
+		
+	},
+}

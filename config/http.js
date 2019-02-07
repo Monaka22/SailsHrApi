@@ -8,6 +8,7 @@
  * For more information on configuration, check out:
  * https://sailsjs.com/config/http
  */
+
 module.exports.http = {
 
   /****************************************************************************
@@ -38,13 +39,10 @@ module.exports.http = {
       'www',
       'favicon',
     ],
-    
-    
+
     bodyParser: require('skipper')({
       maxWaitTimeBeforePassingControlToApp: 150000000
     }),
-
-      
     /***************************************************************************
     *                                                                          *
     * The body parser that will handle incoming multipart HTTP requests.       *

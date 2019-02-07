@@ -10,13 +10,26 @@
 
 module.exports.policies = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Default policy for all controllers and actions, unless overridden.       *
-  * (`true` allows public access)                                            *
-  *                                                                          *
-  ***************************************************************************/
+	/***************************************************************************
+	*                                                                          *
+	* Default policy for all controllers and actions, unless overridden.       *
+	* (`true` allows public access)                                            *
+	*                                                                          *
+	***************************************************************************/
 
-  // '*': true,
+	//'*': true,
+	'*': 'checkForUser',
+	'*': 'isAuthenticated',
+	// PageController: {
+	// 	'*': 'checkForUser',
+	// 	'*': 'isAuthenticated',
 
-};
+	// },
+
+	UserController: {
+		'*': 'isAuthenticated',
+		login: true,
+		register: true
+	}
+
+}
