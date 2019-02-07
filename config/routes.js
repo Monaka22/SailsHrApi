@@ -113,7 +113,11 @@ module.exports.routes = {
   //'POST /array': 'CostdataController.Array',
   //Teamproject API
   'GET /project/team/:id/view' : 'TeamController.GetTeamProjectGetByid',
-  
+  //manday
+  'GET /manday/project/:id/view' : 'MandayController.GetMandayGetByid',
+  'GET /manday/emp/datatable' : 'MandayController.GetMandayDatatable',
+  //CheckFreetime API
+  'GET /Freetime/emp/:id/:position_id' : 'FreetimeController.Getfreetime',
 
   /***************************************************************************
   *                                                                          *

@@ -21,14 +21,14 @@ module.exports = {
 
 		// if no errors were thrown, then grant them a new token
 		// set these config vars in config/local.js, or preferably in config/env/production.js as an environment variable
-		var token = jwt.sign({user: user.id}, sails.config.custom.jwtSecret, {expiresIn:1616971152})// sails.config.jwtExpires})
+		var token = jwt.sign({user: user.id}, sails.config.custom.jwtSecret, {expiresIn:'3h'})// sails.config.jwtExpires})
 		// set a cookie on the client side that they can't modify unless they sign out (just for web apps)
 		res.cookie('sailsjwt', token, {
 			signed: true,
 			// domain: '.yourdomain.com', // always use this in production to whitelist your domain
-			maxAge: 1616971152//sails.config.jwtExpires
+			maxAge: 10800//sails.config.jwtExpires
 		})
-		sails.log(token)
+		//sails.log(token)
 		// provide the token to the client in case they want to store it locally to use in the header (eg mobile/desktop apps)
 		return res.ok(token)
 	},
@@ -60,11 +60,11 @@ module.exports = {
 		})
 		sails.log(user)
 		// after creating a user record, log them in at the same time by issuing their first jwt token and setting a cookie
-		var token = jwt.sign({user: user.id}, sails.config.custom.jwtSecret, {expiresIn: 1616971152 })//sails.config.jwtExpires})
+		var token = jwt.sign({user: user.id}, sails.config.custom.jwtSecret, {expiresIn: '3h' })//sails.config.jwtExpires})
 		res.cookie('sailsjwt', token, {
 			signed: true,
 			// domain: '.yourdomain.com', // always use this in production to whitelist your domain
-			maxAge: 1616971152// sails.config.jwtExpires
+			maxAge: 10800// sails.config.jwtExpires
 		})
 		sails.log(token)
 		// if this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,

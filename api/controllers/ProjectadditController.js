@@ -91,9 +91,16 @@ module.exports = {
         const id = req.param('id')
         if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
           let data = await Projectaddit.find({where:{project_id:id}});
+          const jdata = JSON.parse(JSON.stringify(data));
+          let costprojectaddit = 0
+          for (let i = 0; i < data.length; i++) {
+            costprojectaddit += jdata[i].project_addit_price
+    
+          }
           if (data) {
             return res.json({
               data: data,
+              totaladdit : costprojectaddit,
               message: 'Load By id sucess'
             })
           }

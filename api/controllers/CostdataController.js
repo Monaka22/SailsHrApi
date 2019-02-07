@@ -7,7 +7,7 @@
 
 module.exports = {
     GetcostdataDatatable: async function (req, res) {
-        let data = await Costdata.find().populate('cost_emp_id').populate('cost_branch_id').populate('cost_fixcost_id').populate('cost_benefit_id');
+        let data = await Costdata.find().populate('cost_emp_id').populate('cost_benefit_id');
         // const branch = JSON.parse(JSON.stringify(branch_addit_branch_id[0]));
         //             const branch_name = branch.branch_addit_branch_id.branch_name;
         //             const branch_id = branch.branch_addit_branch_id.id;
