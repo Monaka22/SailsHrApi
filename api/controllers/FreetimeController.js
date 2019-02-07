@@ -46,12 +46,12 @@ module.exports = {
             emp_name.push(positionpjdata[i].emp_id.emp_name);
             emp_nickname.push(positionpjdata[i].emp_id.emp_nickname);
           }
-          sails.log(emp_name)
-          sails.log(emp_id_t)
-          sails.log(emp_name_t)
-          sails.log(emp_nickname_t)
-          sails.log(emp_end_date)
-          sails.log(emp_nickname_t)
+        //   sails.log(emp_name)
+        //   sails.log(emp_id_t)
+        //   sails.log(emp_name_t)
+        //   sails.log(emp_nickname_t)
+        //   sails.log(emp_end_date)
+        //   sails.log(emp_nickname_t)
           let free = "ว่าง";
           let freetime = [];
             for(let j=0 ; j < teampjdata.length;j++){
@@ -81,7 +81,7 @@ module.exports = {
                 }
                 freetime.push(free);
             }
-            sails.log(freetime)
+            //sails.log(freetime)
             let push = [];
             for (let q = 0; q < emp_name_t.length; q++) {
                 push[q] =  emp_id_t[q]+"-"+emp_name_t[q]+"-"+emp_nickname_t[q]+"-"+freetime[q]
@@ -106,15 +106,15 @@ module.exports = {
             emp_name2= Array.from(new Set(emp_name2))
             emp_nickname2 = Array.from(new Set(emp_nickname2))
             //emp_id2 = emp_id2.concat(emp_id_t);
-            sails.log(emp_id2)
-            sails.log(emp_name2)
-            sails.log(emp_nickname2)
-            sails.log(freetime2)
+            // sails.log(emp_id2)
+            // sails.log(emp_name2)
+            // sails.log(emp_nickname2)
+            // sails.log(freetime2)
             //let freetome = positionpjdata.length-teampjdata.length
             for (let r = empcount.length; r < emp_name.length; r++) {
                 freetime2.push("ว่าง")
             }
-            sails.log(freetime2)
+            //sails.log(freetime2)
             var jsonObj = {}
             var array = []
             
