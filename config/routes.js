@@ -23,7 +23,14 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-
+ 'OPTIONS /*': {
+  skipAssets: true,
+  fn: function (req, res) {
+    return res.status(200).json({
+      message: 'Options ok.'
+    })
+  }
+ },
   //Branch API
   'GET /branch/datatable': 'BranchController.GetBranchDatatable',
   'POST /branch/create': 'BranchController.PostBranchCreate',
@@ -118,6 +125,7 @@ module.exports.routes = {
   'GET /manday/emp/datatable' : 'MandayController.GetMandayDatatable',
   //CheckFreetime API
   'GET /freetime/emp/:id/:position_id' : 'FreetimeController.Getfreetime',
+  //'GET /freetime/emp/:id/:position_id' : 'FreetimeController.Getnewfreetime',
   //Dashboard API
   'GET /dashboard/position':'DashboardController.GetDashposition',
   /***************************************************************************

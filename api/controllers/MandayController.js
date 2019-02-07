@@ -35,7 +35,7 @@ module.exports = {
             for (let k = 0; k < databnf.length; k++) {
                    total_benefit += jdatabnf[k].benefit_price
                 }
-                 manM =  total_benefit + jdatabnf[0].benefit_emp_id.emp_salary;
+                 manM =  total_benefit + jdata[j].emp_id.emp_salary;
                 manday = manM / 20
                 mandayArray.push(manday)
         }
@@ -65,6 +65,7 @@ module.exports = {
         } 
        
         let projecttotal = total+costprojectaddit
+        //sails.log(mandayArray)
         await Projectmanage.update({
             id: id
           }).set({
@@ -105,7 +106,7 @@ module.exports = {
              for (let k = 0; k < databnf.length; k++) {
                     total_benefit += jdatabnf[k].benefit_price
                  }
-                  manM =  total_benefit + jdatabnf[0].benefit_emp_id.emp_salary;
+                  manM =  total_benefit + jdata[j].emp_salary;
                  manday = manM / 20
                  mandayArray.push(manday)
          }
