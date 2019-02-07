@@ -10,19 +10,21 @@ module.exports = {
         const id = req.param('id')
         let projectname = await Projectmanage.findOne({id:id});
         const pjdata = JSON.parse(JSON.stringify(projectname));
-        let data = await Team.find({where:{project_id:id}}).populate('emp_id');
+        let data = await Team.find({where:{project_id:id}}).populate('emp_id').populate('position_id');
         const jdata = JSON.parse(JSON.stringify(data));
         let emp_id = [];
         let emp_name = [];
         let emp_nickname = [];
         let emp_workday = []
         let mandayArray = [];
+        let position = []
 
          for (let i = 0; i < data.length; i++){
             emp_id.push(jdata[i].emp_id.id)
             emp_name.push(jdata[i].emp_id.emp_name)
             emp_nickname.push(jdata[i].emp_id.emp_nickname)
             emp_workday.push(jdata[i].emp_workday)
+            position.push(jdata[i].position_id.position_name)
         }
         let total_benefit = 0;
        // sails.log(emp_id.length)
@@ -58,7 +60,7 @@ module.exports = {
         var array = []
         
         for(i=0; i < emp_id.length; i++){
-            array.push({emp_id:emp_id[i],emp_name:emp_name[i],emp_nickname:emp_nickname[i],workday:emp_workday[i],manday:mandayArray[i],Selling:mandayArray[i]*3})
+            array.push({emp_id:emp_id[i],emp_name:emp_name[i],emp_nickname:emp_nickname[i],position_name:position[i],workday:emp_workday[i],manday:mandayArray[i],Selling:mandayArray[i]*3})
             jsonObj =  array ;
         } 
        

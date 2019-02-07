@@ -19,6 +19,9 @@ module.exports = {
 		password: {
 			type: 'string',
 			required: true
+		},
+		status:{
+			type:'string'
 		}
 	},
 
