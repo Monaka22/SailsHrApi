@@ -10,11 +10,18 @@ module.exports = {
 
     let data = await Projectmanage.find();
     //console.log(data.data.branch_name);
+    const jdata = JSON.parse(JSON.stringify(data));
+    let total = 0
+          for (let i = 0; i < data.length; i++) {
+            total += jdata[i].project_total_cost
+    
+          }
     return res.json({
       draw: 0,
       recordsTotal: data.length,
       recordsFiltered: data.length,
-      data: data
+      data: data,
+      allproject_cost:total
     })
 
   },

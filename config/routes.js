@@ -117,8 +117,9 @@ module.exports.routes = {
   'GET /manday/project/:id/view' : 'MandayController.GetMandayGetByid',
   'GET /manday/emp/datatable' : 'MandayController.GetMandayDatatable',
   //CheckFreetime API
-  'GET /Freetime/emp/:id/:position_id' : 'FreetimeController.Getfreetime',
-
+  'GET /freetime/emp/:id/:position_id' : 'FreetimeController.Getfreetime',
+  //Dashboard API
+  'GET /dashboard/position':'DashboardController.GetDashposition',
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
