@@ -47,7 +47,7 @@ module.exports = {
 		if (req.header('authorization')) {
 			// if one exists, attempt to get the header data
 			var token = req.header('authorization').split('Bearer ')[1]
-			sails.log(token)
+			//sails.log(token)
 			// if there's nothing after "Bearer", no go
 			if (!token) return exits.invalid()
 			// if there is something, attempt to parse it as a JWT token

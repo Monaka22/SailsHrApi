@@ -25,13 +25,13 @@ module.exports = {
     let project_id = req.body.project_id
     let positionid = req.body.position_id
     sails.log(project_id)
-        for (let i = 0; i < pushdata.length; i++) {
-          await Team.create({
-            emp_id: pushdata[i],
-            project_id : project_id,
-            position_id : positionid
-          }).fetch()
-        }
+    for (let i = 0; i < pushdata.length; i++) {
+      await Team.create({
+        emp_id: pushdata[i],
+        project_id: project_id,
+        position_id: positionid
+      }).fetch()
+    }
     // let empdate = req.body.emp_start_date;
     // let empdate2 = req.body.emp_end_date;
     // empdate = empdate.split("-");
@@ -71,26 +71,30 @@ module.exports = {
   },
   PostteamUpdate: async function (req, res) {
     try {
-        let empdate = req.body.emp_start_date;
-        let empdate2 = req.body.emp_end_date;
-        empdate = empdate.split("-");
-        empdate2 = empdate2.split("-");
-        let newDate = empdate[2] + "/" + empdate[1] + "/" + empdate[0];
-        let newDate2 = empdate2[2] + "/" + empdate2[1] + "/" + empdate2[0];
-        timestamp = parseDMY(newDate).getTime();
-        timestamp2 = parseDMY(newDate2).getTime();
-        let day = timestamp2 - timestamp;
-        day = Math.floor((day / (3600 * 24)) / 1000);
-        let emp_sprint = (day / 7 | 0) + 1;
-        await Team.update({
-          id: req.body.id
-        }).set({
-          emp_start_date: req.body.emp_start_date,
-          emp_end_date: req.body.emp_end_date,
-          emp_workday: day,
-          emp_sprint: emp_sprint,
-        })
-      return res.json({   
+      let subempdata = req.body.emp_start_date;
+      let subempdata2 = req.body.emp_end_date;
+      subempdata = subempdata.split("T");
+      subempdata2 = subempdata2.split("T");
+      let empdate = subempdata[0];
+      let empdate2 = subempdata2[0];
+      empdate = empdate.split("-");
+      empdate2 = empdate2.split("-");
+      let newDate = empdate[2] + "/" + empdate[1] + "/" + empdate[0];
+      let newDate2 = empdate2[2] + "/" + empdate2[1] + "/" + empdate2[0];
+      timestamp = parseDMY(newDate).getTime();
+      timestamp2 = parseDMY(newDate2).getTime();
+      let day = timestamp2 - timestamp;
+      day = Math.floor((day / (3600 * 24)) / 1000);
+      let emp_sprint = (day / 7 | 0) + 1;
+      await Team.update({
+        id: req.body.id
+      }).set({
+        emp_start_date: req.body.emp_start_date,
+        emp_end_date: req.body.emp_end_date,
+        emp_workday: day,
+        emp_sprint: emp_sprint,
+      })
+      return res.json({
         message: 'Update sucsess'
       })
 
@@ -128,7 +132,7 @@ module.exports = {
     empdate = empdate.split("-");
     empdate2 = empdate2.split("-");
     var newDate = empdate[2] + "/" + empdate[1] + "/" + empdate[0];
-    var newDate2 = empdate2[2] + "/" + empdate2[1] + "/" + (+empdate2[0]+1);
+    var newDate2 = empdate2[2] + "/" + empdate2[1] + "/" + (+empdate2[0] + 1);
     // var days = Math.floor(31622400 / (3600*24));
     // return res.json({day : days,
     // date : newDate
@@ -140,26 +144,30 @@ module.exports = {
     let emp_sprint = (day / 7 | 0) + 1;
 
     return res.send({
-      date: newDate+" - "+newDate2,
+      date: newDate + " - " + newDate2,
       timestamp: timestamp,
       day: day,
       sprint: emp_sprint
     })
   },
-  GetTeamProjectGetByid : async function (req,res) {
+  GetTeamProjectGetByid: async function (req, res) {
     const id = req.param('id')
     // let position_id = req.param('position_id');
-        if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
-          let data = await Team.find({where:{project_id:id}}).populate('emp_id').populate('position_id');
+    if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
+      let data = await Team.find({
+        where: {
+          project_id: id
+        }
+      }).populate('emp_id').populate('position_id');
 
-          if (data) {
-            return res.json({
-              data: data,
-              message: 'Load By id sucess'
-            })
-          }
-          return res.sendStatus(404);
-         }
+      if (data) {
+        return res.json({
+          data: data,
+          message: 'Load By id sucess'
+        })
+      }
+      return res.sendStatus(404);
+    }
   }
 
 };
