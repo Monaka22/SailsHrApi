@@ -7,36 +7,54 @@
 
 module.exports = {
     Getfreetime : async function (req,res) {
-        position = req.param('position_id');
-        projectid = req.param('id');
-        let data = await Team.find({
+        position_id = req.param('position_id');
+        project_id = req.param('id');
+        let positiondata = await Positionemployee.find({
             where: {
-                project_id : projectid,
-                position_id: position
+                //project_id : project_id,
+                position_id: position_id
             }
           }).populate('emp_id').populate('position_id');
-        let pjdata = await Projectmanage.findOne({
-                id : projectid
+          let teamdata = await Team.find({
+            where: {
+                position_id: position_id
+            }
+          }).populate('emp_id').populate('position_id');
+          let projectdata = await Projectmanage.findOne({
+            id : project_id
           })
-          let tpjdata = JSON.parse(JSON.stringify(pjdata));
+          let teampjdata = JSON.parse(JSON.stringify(teamdata));
+          let positionpjdata = JSON.parse(JSON.stringify(positiondata));
+          let projectpjdata = JSON.parse(JSON.stringify(projectdata));
+          let emp_id_t = [];
+          let emp_name_t = [];
+          let emp_nickname_t = [];
+          let emp_end_date = [];
           let emp_id = [];
           let emp_name = [];
           let emp_nickname = [];
-          let emp_start_date = [];
-          let emp_end_date = [];
-          let project_start_date = tpjdata.project_start_date;
-          let project_end_date  = tpjdata.project_end_date;
-          const tdata = JSON.parse(JSON.stringify(data));
-           for (let i = 0; i < tdata.length; i++) {
-            emp_id.push(tdata[i].emp_id.id);
-            emp_name.push(tdata[i].emp_id.emp_name);
-            emp_nickname.push(tdata[i].emp_id.emp_nickname);
-            emp_start_date.push(tdata[i].emp_start_date);
-            emp_end_date.push(tdata[i].emp_end_date);
+          let project_start_date = projectpjdata.project_start_date;
+          let project_end_date  = projectpjdata.project_end_date;
+          for (let i = 0; i < teampjdata.length; i++) {
+            emp_id_t.push(teampjdata[i].emp_id.id);
+            emp_name_t.push(teampjdata[i].emp_id.emp_name);
+            emp_nickname_t.push(teampjdata[i].emp_id.emp_nickname);
+            emp_end_date.push(teampjdata[i].emp_end_date);
           }
-          let free = "";
+          for (let i = 0; i < positionpjdata.length; i++) {
+            emp_id.push(positionpjdata[i].emp_id.id);
+            emp_name.push(positionpjdata[i].emp_id.emp_name);
+            emp_nickname.push(positionpjdata[i].emp_id.emp_nickname);
+          }
+          sails.log(emp_name)
+          sails.log(emp_id_t)
+          sails.log(emp_name_t)
+          sails.log(emp_nickname_t)
+          sails.log(emp_end_date)
+          sails.log(emp_nickname_t)
+          let free = "ว่าง";
           let freetime = [];
-            for(let j=0 ; j < emp_start_date.length;j++){
+            for(let j=0 ; j < teampjdata.length;j++){
                 let empenddate = emp_end_date[j];
                 let projectstartdate = project_start_date;
                 let projectenddate = project_end_date;
@@ -63,20 +81,49 @@ module.exports = {
                 }
                 freetime.push(free);
             }
+            sails.log(freetime)
+            let push = [];
+            for (let q = 0; q < emp_name_t.length; q++) {
+                push[q] =  emp_id_t[q]+"-"+emp_name_t[q]+"-"+emp_nickname_t[q]+"-"+freetime[q]
+            }
+            push = Array.from(new Set(push)) 
+            emp_id2 = [];
+            emp_name2 =[];
+            emp_nickname2 =[];
+            freetime2 = [];
+            for (let w = 0; w < push.length; w++) {
+                push[w] = push[w].split("-");
+                emp_id2[w] = Number(push[w][0]);
+                emp_name2[w] = push[w][1];
+                emp_nickname2[w] = push[w][2];
+                freetime2[w] = push[w][3];
+            }
+            emp_id2 = emp_id2.concat(emp_id);
+            empcount = emp_name2;
+            emp_name2 = emp_name2.concat(emp_name);
+            emp_nickname2 = emp_nickname2.concat(emp_nickname);
+            emp_id2 = Array.from(new Set(emp_id2))
+            emp_name2= Array.from(new Set(emp_name2))
+            emp_nickname2 = Array.from(new Set(emp_nickname2))
+            //emp_id2 = emp_id2.concat(emp_id_t);
+            sails.log(emp_id2)
+            sails.log(emp_name2)
+            sails.log(emp_nickname2)
+            sails.log(freetime2)
+            //let freetome = positionpjdata.length-teampjdata.length
+            for (let r = empcount.length; r < emp_name.length; r++) {
+                freetime2.push("ว่าง")
+            }
+            sails.log(freetime2)
             var jsonObj = {}
             var array = []
             
-            for(i=0; i < tdata.length; i++){
-                array.push({emp_id:emp_id[i],emp_name:emp_name[i],emp_nickname:emp_nickname[i],freetime:freetime[i]})
+            for(i=0; i < freetime2.length; i++){
+                array.push({emp_id:emp_id2[i],emp_name:emp_name2[i],emp_nickname:emp_nickname2[i],freetime:freetime2[i]})
                 jsonObj =  array ;
             } 
             return res.json({data:jsonObj})
-          //res.send(tpjdata)
-         //return res.json({emp_name:emp_name,emp_nickname:emp_nickname,emp_end_date:emp_end_date,emp_start_date:emp_start_date,project_start_date:project_start_date,project_end_date:project_end_date,freetime:freetime})
-
-
-
-    },
+    }
    
 
 };
