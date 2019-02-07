@@ -55,7 +55,7 @@ module.exports = {
                 timestamp = parseDMY(newDate).getTime();
                 timestamp2 = parseDMY(newDate2).getTime();
                 timestamp3 = parseDMY(newDate3).getTime();
-                sails.log(timestamp,timestamp2,timestamp3)
+                //sails.log(timestamp,timestamp2,timestamp3)
                 if (timestamp > timestamp2 && timestamp < timestamp3) {
                    free = "ไม่ว่าง"
                 }else{
