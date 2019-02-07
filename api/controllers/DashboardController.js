@@ -36,7 +36,7 @@ module.exports = {
          var array = []
          
          for(i=0; i < positionname.length; i++){
-             array.push({positionname:positionname[i],position_num:positiontotal[i]})
+             array.push({label:positionname[i],value:positiontotal[i]})
              jsonObj =  array ;
          } 
          return res.json({data:jsonObj,all_position:positionname.length})
