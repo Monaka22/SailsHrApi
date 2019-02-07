@@ -15,11 +15,7 @@ module.exports = {
                 position_id: position_id
             }
           }).populate('emp_id').populate('position_id');
-          let teamdata = await Team.find({
-            where: {
-                position_id: position_id
-            }
-          }).populate('emp_id').populate('position_id');
+          let teamdata = await Team.find().populate('emp_id').populate('position_id');
           let projectdata = await Projectmanage.findOne({
             id : project_id
           })
@@ -81,7 +77,9 @@ module.exports = {
                 }
                 freetime.push(free);
             }
-            //sails.log(freetime)
+            // sails.log(timestamp)
+            // sails.log(timestamp2)
+            // sails.log(timestamp3)
             let push = [];
             for (let q = 0; q < emp_name_t.length; q++) {
                 push[q] =  emp_id_t[q]+"-"+emp_name_t[q]+"-"+emp_nickname_t[q]+"-"+freetime[q]
@@ -105,12 +103,12 @@ module.exports = {
             emp_id2 = Array.from(new Set(emp_id2))
             emp_name2= Array.from(new Set(emp_name2))
             emp_nickname2 = Array.from(new Set(emp_nickname2))
-            //emp_id2 = emp_id2.concat(emp_id_t);
+            emp_id2 = emp_id2.concat(emp_id_t);
             // sails.log(emp_id2)
             // sails.log(emp_name2)
             // sails.log(emp_nickname2)
             // sails.log(freetime2)
-            //let freetome = positionpjdata.length-teampjdata.length
+            let freetome = positionpjdata.length-teampjdata.length
             for (let r = empcount.length; r < emp_name.length; r++) {
                 freetime2.push("ว่าง")
             }
