@@ -39,7 +39,7 @@ module.exports = {
         emp_id_t.push(teampjdata[i].emp_id.id);
         emp_name_t.push(teampjdata[i].emp_id.emp_name);
         emp_nickname_t.push(teampjdata[i].emp_id.emp_nickname);
-        emp_end_date_t.push(teampjdata[i].emp_end_date);
+        if(teampjdata[i].emp_end_date(!empty)){emp_end_date_t.push(teampjdata[i].emp_end_date);}else{emp_end_date_t.push("2002-01-01")}
         emp_position_id_t.push(position_id);
     }
     for (let i = 0; i < positionpjdata.length; i++) {
