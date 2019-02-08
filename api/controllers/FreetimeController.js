@@ -32,14 +32,19 @@ module.exports = {
     let emp_id = [];
     let emp_name = [];
     let emp_nickname = [];
-    let freetime = [];
+    let freetime = "";
     let project_start_date = projectpjdata.project_start_date;
     let project_end_date = projectpjdata.project_end_date;
     for (let i = 0; i < teampjdata.length; i++) {
         emp_id_t.push(teampjdata[i].emp_id.id);
         emp_name_t.push(teampjdata[i].emp_id.emp_name);
         emp_nickname_t.push(teampjdata[i].emp_id.emp_nickname);
-        if(teampjdata[i].emp_end_date(!empty)){emp_end_date_t.push(teampjdata[i].emp_end_date);}else{emp_end_date_t.push("2002-01-01")}
+        freetime = teampjdata[i].emp_end_date;
+        if(freetime(!empty)){
+            emp_end_date_t.push(teampjdata[i].emp_end_date);
+        }else{
+            emp_end_date_t.push("2002-01-01");
+        }
         emp_position_id_t.push(position_id);
     }
     for (let i = 0; i < positionpjdata.length; i++) {
@@ -54,14 +59,14 @@ module.exports = {
     emp_nickname = emp_nickname.concat(emp_nickname_t);
     emp_position_id = emp_position_id.concat(emp_position_id_t);
     emp_end_date = emp_end_date.concat(emp_end_date_t);
-    sails.log(emp_id)
-     sails.log(emp_name)
-     sails.log(emp_nickname)
-    // sails.log(emp_id_t)
-    // sails.log(emp_name_t)
-    sails.log(emp_position_id)
-    // sails.log(emp_nickname_t)
-     sails.log(emp_end_date)
+    // sails.log(emp_id)
+    //  sails.log(emp_name)
+    //  sails.log(emp_nickname)
+    // // sails.log(emp_id_t)
+    // // sails.log(emp_name_t)
+    // sails.log(emp_position_id)
+    // // sails.log(emp_nickname_t)
+    //  sails.log(emp_end_date)
     // sails.log(freetime)
     //sails.log(freetime)
           let freetime2 = [];
@@ -104,7 +109,7 @@ module.exports = {
                    }
                }  
             }
-            sails.log(freetime2)
+            //sails.log(freetime2)
     //         // sails.log(timestamp2)
     //         // sails.log(timestamp3)
             // let array2 = [];
