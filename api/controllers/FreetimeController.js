@@ -11,7 +11,6 @@ module.exports = {
     project_id = req.param('id');
     let positiondata = await Positionemployee.find({
       where: {
-        //project_id : project_id,
         position_id: position_id
       }
     }).populate('emp_id').populate('position_id');
@@ -26,8 +25,10 @@ module.exports = {
     let emp_id_t = [];
     let emp_name_t = [];
     let emp_nickname_t = [];
+    let emp_position_id_t = [];
     let emp_position_id = [];
     let emp_end_date = [];
+    let emp_end_date_t = [];
     let emp_id = [];
     let emp_name = [];
     let emp_nickname = [];
@@ -35,29 +36,36 @@ module.exports = {
     let project_start_date = projectpjdata.project_start_date;
     let project_end_date = projectpjdata.project_end_date;
     for (let i = 0; i < teampjdata.length; i++) {
-      emp_id_t.push(teampjdata[i].emp_id.id);
-      emp_name_t.push(teampjdata[i].emp_id.emp_name);
-      emp_nickname_t.push(teampjdata[i].emp_id.emp_nickname);
-      emp_end_date.push(teampjdata[i].emp_end_date);
-      emp_position_id.push(teampjdata[i].position_id.id);
-      freetime.push("ว่าง");
+        emp_id_t.push(teampjdata[i].emp_id.id);
+        emp_name_t.push(teampjdata[i].emp_id.emp_name);
+        emp_nickname_t.push(teampjdata[i].emp_id.emp_nickname);
+        emp_end_date_t.push(teampjdata[i].emp_end_date);
+        emp_position_id_t.push(position_id);
     }
     for (let i = 0; i < positionpjdata.length; i++) {
-      emp_id.push(positionpjdata[i].emp_id.id);
-      emp_name.push(positionpjdata[i].emp_id.emp_name);
-      emp_nickname.push(positionpjdata[i].emp_id.emp_nickname);
+        emp_id.push(positionpjdata[i].emp_id.id);
+        emp_name.push(positionpjdata[i].emp_id.emp_name);
+        emp_nickname.push(positionpjdata[i].emp_id.emp_nickname);
+        emp_position_id.push(positionpjdata[i].position_id.id);
+        emp_end_date.push("2002-01-01");
     }
-    // sails.log(emp_name)
-    // sails.log(emp_nickname)
+    emp_id = emp_id.concat(emp_id_t);
+    emp_name = emp_name.concat(emp_name_t);
+    emp_nickname = emp_nickname.concat(emp_nickname_t);
+    emp_position_id = emp_position_id.concat(emp_position_id_t);
+    emp_end_date = emp_end_date.concat(emp_end_date_t);
+    sails.log(emp_id)
+     sails.log(emp_name)
+     sails.log(emp_nickname)
     // sails.log(emp_id_t)
     // sails.log(emp_name_t)
-     //sails.log(emp_position_id)
+    sails.log(emp_position_id)
     // sails.log(emp_nickname_t)
-    // sails.log(emp_end_date)
+     sails.log(emp_end_date)
     // sails.log(freetime)
     //sails.log(freetime)
           let freetime2 = [];
-            for(let j=0 ; j < teampjdata.length;j++){
+            for(let j=0 ; j < emp_id.length;j++){
                 let empenddate = emp_end_date[j];
                 let projectstartdate = project_start_date;
                 let projectenddate = project_end_date;
@@ -87,7 +95,7 @@ module.exports = {
             //sails.log(freetime2)
             for (let y = 0; y < freetime2.length; y++) {
                for (let z = 0; z < freetime2.length; z++) {
-                   if(emp_name_t[y]==emp_name_t[z]){
+                   if(emp_name[y]==emp_name[z]){
                        if(freetime2[y]=="ไม่ว่าง"||freetime2[z]=="ไม่ว่าง"){
                         freetime2[y] = "ไม่ว่าง";
                         freetime2[z] = "ไม่ว่าง";
@@ -96,7 +104,7 @@ module.exports = {
                    }
                }  
             }
-            //sails.log(freetime2)
+            sails.log(freetime2)
     //         // sails.log(timestamp2)
     //         // sails.log(timestamp3)
             // let array2 = [];
@@ -123,7 +131,7 @@ module.exports = {
            for(i=0; i < emp_position_id.length; i++){
                     if(emp_position_id[i] == position_id ){
                         //sails.log(emp_position_id[i])
-                             array.push({emp_id:emp_id_t[i],emp_name:emp_name_t[i],emp_nickname:emp_nickname_t[i],freetime:freetime2[i],position_id:emp_position_id[i]})
+                             array.push({emp_id:emp_id[i],emp_name:emp_name[i],emp_nickname:emp_nickname[i],freetime:freetime2[i],position_id:emp_position_id[i]})
                         jsonObj =  array ;
                    
                    
