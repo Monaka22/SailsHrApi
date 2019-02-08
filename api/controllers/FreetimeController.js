@@ -121,16 +121,67 @@ module.exports = {
            var jsonObj = {}
             var array = []
            for(i=0; i < emp_position_id.length; i++){
-                    if(emp_position_id[i] == position_id){
+                    if(emp_position_id[i] == position_id ){
                         //sails.log(emp_position_id[i])
                              array.push({emp_id:emp_id_t[i],emp_name:emp_name_t[i],emp_nickname:emp_nickname_t[i],freetime:freetime2[i],position_id:emp_position_id[i]})
                         jsonObj =  array ;
-                    }
+                   
+                   
+               }
+                    
             } 
-                var data ={}
-                data = {data:jsonObj}
+                
+
+                emp_id2 = []
+                emp_name2 = []
+                emp_nickname2 = []
+                freetime3 = []
+
+                for(let i=0; i<jsonObj.length; i++) {
+                   emp_id2.push(jsonObj[i].emp_id)
+                   emp_name2.push(jsonObj[i].emp_name)
+                   emp_nickname2.push(jsonObj[i].emp_nickname)
+                   freetime3.push(jsonObj[i].freetime)
+                }
+        //         sails.log(emp_id2)
+        //     sails.log(emp_name2)
+        //     sails.log(emp_nickname2)
+        //    sails.log(freetime3)
+           //sails.log(freetime2)
+             let push2 = [];
+            for (let q = 0; q < freetime3.length; q++) {
+                push2[q] =  emp_id2[q]+"-"+emp_name2[q]+"-"+emp_nickname2[q]+"-"+freetime3[q];
+            } 
+            push2 = Array.from(new Set(push2)) 
+            emp_id3 = []
+                emp_name3 = []
+                emp_nickname3 = []
+                freetime4 = []
+            for (let w = 0; w < push2.length; w++) {
+                            push2[w] = push2[w].split("-");
+                            emp_id3[w] = Number(push2[w][0]);
+                            emp_name3[w] = push2[w][1];
+                            emp_nickname3[w] = push2[w][2];
+                            freetime4[w] = push2[w][3];
+                        }
+        //     sails.log(emp_id3)
+        //     sails.log(emp_name3)
+        //     sails.log(emp_nickname3)
+        //    sails.log(freetime4)
+        //     sails.log(push2)  
+            var jsonObj2 = {}
+            var array2 = []
+           for(i=0; i < freetime4.length; i++){
+                        //sails.log(emp_position_id[i])
+                        array2.push({emp_id:emp_id3[i],emp_name:emp_name3[i],emp_nickname:emp_nickname3[i],freetime:freetime4[i]})
+                             jsonObj2 =  array2 ;
+                    
+                }
+                    var data ={}
+                    data = {data:jsonObj2}
 
                 return res.json(data)
+
             //sails.log(push[0][3])
             // for (let index = 0; index < array.length; index++) {
             //     const element = array[index];
