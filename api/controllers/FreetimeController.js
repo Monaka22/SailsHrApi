@@ -40,7 +40,7 @@ module.exports = {
         emp_name_t.push(teampjdata[i].emp_id.emp_name);
         emp_nickname_t.push(teampjdata[i].emp_id.emp_nickname);
         emp_end_date_t.push(teampjdata[i].emp_end_date);
-        emp_position_id_t.push(position_id);
+        emp_position_id_t.push(teampjdata[i].position_id.id);
     }
     for (let i = 0; i < positionpjdata.length; i++) {
         emp_id.push(positionpjdata[i].emp_id.id);
