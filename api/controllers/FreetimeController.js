@@ -40,7 +40,7 @@ module.exports = {
         emp_name_t.push(teampjdata[i].emp_id.emp_name);
         emp_nickname_t.push(teampjdata[i].emp_id.emp_nickname);
         freetime = teampjdata[i].emp_end_date;
-        if(freetime(!empty)){
+        if(freetime){
             emp_end_date_t.push(teampjdata[i].emp_end_date);
         }else{
             emp_end_date_t.push("2002-01-01");
