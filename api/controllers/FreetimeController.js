@@ -32,15 +32,14 @@ module.exports = {
     let emp_id = [];
     let emp_name = [];
     let emp_nickname = [];
-    //let freetime = "";
+    let freetime = [];
     let project_start_date = projectpjdata.project_start_date;
     let project_end_date = projectpjdata.project_end_date;
     for (let i = 0; i < teampjdata.length; i++) {
         emp_id_t.push(teampjdata[i].emp_id.id);
         emp_name_t.push(teampjdata[i].emp_id.emp_name);
         emp_nickname_t.push(teampjdata[i].emp_id.emp_nickname);
-        freetime = teampjdata[i].emp_end_date;
-            emp_end_date_t.push(teampjdata[i].emp_end_date);
+        emp_end_date_t.push(teampjdata[i].emp_end_date);
         emp_position_id_t.push(position_id);
     }
     for (let i = 0; i < positionpjdata.length; i++) {
