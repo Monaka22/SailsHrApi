@@ -40,10 +40,10 @@ module.exports = {
         emp_name_t.push(teampjdata[i].emp_id.emp_name);
         emp_nickname_t.push(teampjdata[i].emp_id.emp_nickname);
         freetime = teampjdata[i].emp_end_date;
-        if(freetime){
-            emp_end_date_t.push(teampjdata[i].emp_end_date);
-        }else{
+        if(freetime===""){
             emp_end_date_t.push("2002-01-01");
+        }else{
+            emp_end_date_t.push(teampjdata[i].emp_end_date);
         }
         emp_position_id_t.push(position_id);
     }
