@@ -73,6 +73,7 @@ module.exports = {
     }
   },
   PostfixcostDelete: async function (req, res) {
+    const id = req.body.id
     if (_.isUndefined(id)){
       return res.badRequest('ID is Undefind.')
     }
