@@ -21,7 +21,7 @@ module.exports = {
     })
   },
   PostteamCreate: async function (req, res) {
-    if(!_.isUndefined(req.body.pushdataarray)&&!_.isUndefined(req.body.project_id)&&!_.isUndefined(req.body.position_id)){
+    //if(!_.isUndefined(req.body.pushdataarray)&&!_.isUndefined(req.body.project_id)&&!_.isUndefined(req.body.position_id)){
     let pushdata = req.body.pushdataarray
     let project_id = req.body.project_id
     let positionid = req.body.position_id
@@ -33,10 +33,10 @@ module.exports = {
         position_id: positionid
       }).fetch()
     }
-  }
-  return res.status(400).json({
-      Error: 'Some Data is Undefined'
-    })
+  // }
+  // return res.status(400).json({
+  //     Error: 'Some Data is Undefined'
+  //   })
     // let empdate = req.body.emp_start_date;
     // let empdate2 = req.body.emp_end_date;
     // empdate = empdate.split("-");
@@ -82,7 +82,7 @@ module.exports = {
       return res.badRequest('ID is Undefind.')
     }
     try {
-      if(!_.isUndefined(req.body.pushdataarray)&&!_.isUndefined(req.body.project_id)&&!_.isUndefined(req.body.position_id)){
+      //if(!_.isUndefined(req.body.pushdataarray)&&!_.isUndefined(req.body.project_id)&&!_.isUndefined(req.body.position_id)){
       // let subempdata = req.body.emp_start_date;
       // let subempdata2 = req.body.emp_end_date;
       // subempdata = subempdata.split("T");
@@ -109,10 +109,10 @@ module.exports = {
       return res.json({
         message: 'Update sucsess'
       })
-    }
-    return res.status(400).json({
-        Error: 'Some Data is Undefined'
-      })
+    // }
+    // return res.status(400).json({
+    //     Error: 'Some Data is Undefined'
+    //   })
 
     } catch (err) {
       // sails.log(err)
