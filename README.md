@@ -16,6 +16,9 @@ a [Sails v1](https://sailsjs.com) application
 
 This app was originally generated on Tue Jan 22 2019 11:22:51 GMT+0700 (+07) using Sails v1.1.0.
 
+##
+sudo sysctl fs.inotify.max_user_watches=582222 && sudo sysctl -p
+
 <!-- Internally, Sails used [`sails-generate@1.16.4`](https://github.com/balderdashy/sails-generate/tree/v1.16.4/lib/core-generators/new). -->
 
 
