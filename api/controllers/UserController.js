@@ -12,6 +12,13 @@ var jwt = require('jsonwebtoken')
 module.exports = {
   // patch /api/users/login
   login: async function (req, res) {
+    if (_.isUndefined(req.body.username)) {
+      return res.badRequest('An username address is required.')
+    }
+
+    if (_.isUndefined(req.body.password)) {
+      return res.badRequest('A password is required.')
+    }
     var user = await User.findOne({
       username: req.body.username
     })

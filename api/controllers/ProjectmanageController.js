@@ -84,7 +84,9 @@ module.exports = {
     }
   },
   PostprojectmanageDelete: async function (req, res) {
-    const id = req.body.id
+    if (_.isUndefined(id)){
+      return res.badRequest('ID is Undefind.')
+    }
     await Projectmanage.destroy({
       id: id
     }).exec(function (err) {

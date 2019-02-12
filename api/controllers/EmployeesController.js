@@ -84,7 +84,9 @@ module.exports = {
     })
   },
   PostemployeeDelete: async function (req, res) {
-    const id = req.body.id
+    if (_.isUndefined(id)){
+      return res.badRequest('ID is Undefind.')
+    }
     await Employees.destroy({
       id: id
     }).exec(function (err) {

@@ -19,12 +19,17 @@ module.exports = {
     })
   },
   PostPositionCreate: async function (req, res) {
-    await Position.create({
-      position_name: req.body.position_name,
-      status: 1
-    }).fetch()
-    return res.json({
-      Message: 'Create Complele'
+    if(!_.isUndefined(req.body.position_name)){
+      await Position.create({
+        position_name: req.body.position_name,
+        status: 1
+      }).fetch()
+      return res.json({
+        Message: 'Create Complele'
+      })
+    }
+    return res.status(400).json({
+      Error: 'Data is Undefined'
     })
   },
   GetPositionById: async function (req, res) {
@@ -44,29 +49,39 @@ module.exports = {
   },
   PostPositionUpdate: async function (req, res) {
     try {
-
-      await Position.update({
-        id: req.body.id
-      }).set({
-        position_name: req.body.position_name
-      })
-      return res.json({
-        message: 'Update sucsess'
-      })
-
+      if (!_.isString(req.body.id) && !_.isNotEmptyString(req.body.id)) {
+        return res.notFound()
+      } else {
+        if(!_.isUndefined(req.body.position_name)){
+          await Position.update({
+            id: req.body.id
+          }).set({
+            position_name: req.body.position_name
+          })
+          return res.json({
+            message: 'Update sucsess'
+          })
+        }
+        return res.status(400).json({
+      Error: 'Data is Undefined'
+    })
+      }
     } catch (err) {
       // sails.log(err)
       // sails.log(JSON.stringify(err))
-      let message = await sails.helpers.error(err.code, '')
+      //let message = await sails.helpers.error(err.code, '')
       sails.log(err)
       return res.badRequest({
         err: err,
-        message: message
+       // message: message
       })
     }
   },
   PostPositionDelete: async function (req, res) {
     const id = req.body.id
+    if (_.isUndefined(id)){
+      return res.badRequest('ID is Undefind.')
+    }
     await Position.destroy({
       id: id
     }).exec(function (err) {
