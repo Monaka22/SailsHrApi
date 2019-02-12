@@ -21,18 +21,27 @@ module.exports = {
         })
       },
       PostprojectadditCreate: async function (req, res) {
-        await Projectaddit.create({
-          project_addit_title: req.body.project_addit_title,
-          project_addit_date: req.body.project_addit_date,
-          project_addit_price: req.body.project_addit_price,
-          project_id: req.body.project_id
-        }).fetch()
-        return res.json({
-          message: 'Create Complele'
-        })
+        if(!_.isUndefined(req.body.project_addit_title)&&!_.isUndefined(req.body.project_addit_date)&&!_.isUndefined(req.body.project_addit_price)&&!_.isUndefined(req.body.project_id)){
+          await Projectaddit.create({
+            project_addit_title: req.body.project_addit_title,
+            project_addit_date: req.body.project_addit_date,
+            project_addit_price: req.body.project_addit_price,
+            project_id: req.body.project_id
+          }).fetch()
+          return res.json({
+            message: 'Create Complele'
+          })
+        }
+        return res.status(400).json({
+            Error: 'Some Data is Undefined'
+          })
+        
       },
       GetprojectadditById: async function (req, res) {
         const id = req.param('id')
+        if(isNaN(id)){
+          return res.status(400).json('id is not integer')
+        }
         if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
           let data = await Projectaddit.findOne({
             id: id
@@ -43,12 +52,15 @@ module.exports = {
               message: 'Load By id sucess'
             })
           }
-          return res.sendStatus(404);
+          return res.status(404).json('id is notfond');
         }
       },
       PostprojectadditUpdate: async function (req, res) {
+        if (_.isUndefined(req.body.id)||req.body.id == ""){
+          return res.badRequest('ID is Undefind.')
+        }
         try {
-    
+          if(!_.isUndefined(req.body.project_addit_title)&&!_.isUndefined(req.body.project_addit_date)&&!_.isUndefined(req.body.project_addit_price)&&!_.isUndefined(req.body.project_id)){
           await Projectaddit.update({
             id: req.body.id
           }).set({
@@ -59,6 +71,10 @@ module.exports = {
           })
           return res.json({
             message: 'Update sucsess'
+          })
+        }
+        return res.status(400).json({
+            Error: 'Some Data is Undefined'
           })
     
         } catch (err) {
@@ -74,7 +90,7 @@ module.exports = {
       },
       PostprojectadditDelete: async function (req, res) {
         const id = req.body.id
-        if (_.isUndefined(id)){
+        if (_.isUndefined(id)||id == ""){
           return res.badRequest('ID is Undefind.')
         }
         await Projectaddit.destroy({

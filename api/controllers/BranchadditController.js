@@ -21,18 +21,27 @@ module.exports = {
     })
   },
   PostBranchadditCreate: async function (req, res) {
-    await Branchaddit.create({
-      branch_addit_title: req.body.branch_addit_title,
-      branch_addit_price: req.body.branch_addit_price,
-      branch_addit_date: req.body.branch_addit_date,
-      branch_addit_branch_id: req.body.branch_addit_branch_id
-    }).fetch()
-    return res.json({
-      message: 'Create Complele'
+    if(!_.isUndefined(req.body.branch_addit_title)&&!_.isUndefined(req.body.branch_addit_price)&&!_.isUndefined(req.body.branch_addit_date)&&!_.isUndefined(req.body.branch_addit_branch_id)){
+      await Branchaddit.create({
+        branch_addit_title: req.body.branch_addit_title,
+        branch_addit_price: req.body.branch_addit_price,
+        branch_addit_date: req.body.branch_addit_date,
+        branch_addit_branch_id: req.body.branch_addit_branch_id
+      }).fetch()
+      return res.json({
+        message: 'Create Complele'
+      })
+    }
+  return res.status(400).json({
+      Error: 'Some Data is Undefined'
     })
+    
   },
   GetBranchadditById: async function (req, res) {
     const id = req.param('id')
+    if(isNaN(id)){
+      return res.status(400).json('id is not integer')
+    }
     if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
       let data = await Branchaddit.findOne({
         id: id
@@ -43,12 +52,15 @@ module.exports = {
           message: 'Load By id sucess'
         })
       }
-      return res.sendStatus(404);
+      return res.status(404).json('id is notfond');
     }
   },
   PostBranchadditUpdate: async function (req, res) {
+    if (_.isUndefined(req.body.id)||req.body.id == ""){
+      return res.badRequest('ID is Undefind.')
+    }
     try {
-
+      if(!_.isUndefined(req.body.benefit_title)&&!_.isUndefined(req.body.benefit_price)&&!_.isUndefined(req.body.benefit_date)&&!_.isUndefined(req.body.benefit_emp_id)){
       await Branchaddit.update({
         id: req.body.id
       }).set({
@@ -60,7 +72,10 @@ module.exports = {
       return res.json({
         message: 'Update sucsess'
       })
-
+    }
+    return res.status(400).json({
+        Error: 'Some Data is Undefined'
+      })
     } catch (err) {
       // sails.log(err)
       // sails.log(JSON.stringify(err))
@@ -74,7 +89,7 @@ module.exports = {
   },
   PostBranchadditDelete: async function (req, res) {
     const id = req.body.id
-    if (_.isUndefined(id)){
+    if (_.isUndefined(id)||id == ""){
       return res.badRequest('ID is Undefind.')
     }
     await Branchaddit.destroy({

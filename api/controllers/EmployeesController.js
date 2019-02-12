@@ -28,25 +28,35 @@ module.exports = {
       saveAs: newname + '.jpg',
       maxBytes: 1000000
     }, function (err, uploadedFiles) {});
-    var data = await Employees.create({
-      emp_name: req.body.emp_name,
-      emp_nickname:req.body.emp_nickname,
-      emp_salary: req.body.emp_salary,
-      emp_address: req.body.emp_address,
-      emp_tel: req.body.emp_tel,
-      emp_emer_con_name: req.body.emp_emer_con_name,
-      emp_emer_con_relation: req.body.emp_emer_con_relation,
-      emp_emer_con_address: req.body.emp_emer_con_address,
-      emp_emer_con_tel: req.body.emp_emer_con_tel,
-      emp_branch_id: req.body.emp_branch_id,
-      emp_id_card: filename
-    }).fetch()
-    return res.json({
-      message: 'Create Complele',
-      data: data
-    })
+    if(!_.isUndefined(req.body.emp_name)&&!_.isUndefined(req.body.emp_nickname)&&!_.isUndefined(req.body.emp_salary)&&!_.isUndefined(req.body.emp_address)&&!_.isUndefined(req.body.emp_tel)&&!_.isUndefined(req.body.emp_emer_con_name)&&!_.isUndefined(req.body.emp_emer_con_relation)&&!_.isUndefined(req.body.emp_emer_con_address)&&!_.isUndefined(req.body.emp_emer_con_tel)&&!_.isUndefined(req.body.emp_branch_id)){
+      var data = await Employees.create({
+        emp_name: req.body.emp_name,
+        emp_nickname:req.body.emp_nickname,
+        emp_salary: req.body.emp_salary,
+        emp_address: req.body.emp_address,
+        emp_tel: req.body.emp_tel,
+        emp_emer_con_name: req.body.emp_emer_con_name,
+        emp_emer_con_relation: req.body.emp_emer_con_relation,
+        emp_emer_con_address: req.body.emp_emer_con_address,
+        emp_emer_con_tel: req.body.emp_emer_con_tel,
+        emp_branch_id: req.body.emp_branch_id,
+        emp_id_card: filename
+      }).fetch()
+      return res.json({
+        message: 'Create Complele',
+        data: data
+      })
+    }
+    return res.status(400).json({
+        Error: 'Some Data is Undefined'
+      })
+    
   },
   PostemployeeUpdate: async function (req, res) {
+    if (_.isUndefined(req.body.id)||req.body.id == ""){
+      return res.badRequest('ID is Undefind.')
+    }
+    if(!_.isUndefined(req.body.emp_name)&&!_.isUndefined(req.body.emp_nickname)&&!_.isUndefined(req.body.emp_salary)&&!_.isUndefined(req.body.emp_address)&&!_.isUndefined(req.body.emp_tel)&&!_.isUndefined(req.body.emp_emer_con_name)&&!_.isUndefined(req.body.emp_emer_con_relation)&&!_.isUndefined(req.body.emp_emer_con_address)&&!_.isUndefined(req.body.emp_emer_con_tel)&&!_.isUndefined(req.body.emp_branch_id)){
     var data = await Employees.update({
       id: req.body.id
     }).set({
@@ -82,10 +92,14 @@ module.exports = {
       message: 'update Complele',
       data: data
     })
+  }
+  return res.status(400).json({
+      Error: 'Some Data is Undefined'
+    })
   },
   PostemployeeDelete: async function (req, res) {
     const id = req.body.id
-    if (_.isUndefined(id)){
+    if (_.isUndefined(id)||id == ""){
       return res.badRequest('ID is Undefind.')
     }
     await Employees.destroy({
@@ -103,6 +117,9 @@ module.exports = {
   },
   GetemployeeById: async function (req, res) {
     const id = req.param('id')
+    if(isNaN(id)){
+      return res.status(400).json('id is not integer')
+    }
     if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
       let data = await Employees.findOne({
         id: id
@@ -113,7 +130,7 @@ module.exports = {
           message: 'Load By id sucess'
         })
       }
-      return res.sendStatus(404);
+      return res.status(404).json('id is notfond');
     }
   },
   

@@ -34,17 +34,20 @@ module.exports = {
       },
       GetcostdataById: async function (req, res) {
         const id = req.param('id')
+        if(isNaN(id)){
+          return res.status(400).json('id is not integer')
+        }
         if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
           let data = await Costdata.findOne({
             id: id
-          }).populate('cost_emp_id').populate('cost_branch_id').populate('cost_fixcost_id').populate('cost_benefit_id');
+          }).populate('cost_emp_id').populate('cost_benefit_id');
           if (data) {
             return res.json({
               data: data,
               message: 'Load By id sucess'
             })
           }
-          return res.sendStatus(404);
+          return res.status(404).json('id is notfond');
         }
       },
       PostcostdataUpdate: async function (req, res) {
@@ -76,7 +79,7 @@ module.exports = {
       },
       PostcostdataDelete: async function (req, res) {
         const id = req.body.id
-        if (_.isUndefined(id)){
+        if (_.isUndefined(id)||id == ""){
           return res.badRequest('ID is Undefind.')
         }
         await Costdata.destroy({

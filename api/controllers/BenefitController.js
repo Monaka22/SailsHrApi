@@ -21,19 +21,28 @@ module.exports = {
     })
   },
   PostbenefitCreate: async function (req, res) {
-    await Benefit.create({
-      benefit_title: req.body.benefit_title,
-      benefit_price: req.body.benefit_price,
-      benefit_date : req.body.benefit_date,
-      benefit_note : req.body.benefit_note,
-      benefit_emp_id: req.body.benefit_emp_id,
-    }).fetch()
-    return res.json({
-      message: 'Create Complele'
+    if(!_.isUndefined(req.body.benefit_title)&&!_.isUndefined(req.body.benefit_price)&&!_.isUndefined(req.body.benefit_date)&&!_.isUndefined(req.body.benefit_emp_id)){
+      await Benefit.create({
+        benefit_title: req.body.benefit_title,
+        benefit_price: req.body.benefit_price,
+        benefit_date : req.body.benefit_date,
+        benefit_note : req.body.benefit_note,
+        benefit_emp_id: req.body.benefit_emp_id,
+      }).fetch()
+      return res.json({
+        message: 'Create Complele'
+      })
+    }
+  return res.status(400).json({
+      Error: 'Some Data is Undefined'
     })
+    
   },
   GetbenefitById: async function (req, res) {
     const id = req.param('id')
+    if(isNaN(id)){
+      return res.status(400).json('id is not integer')
+    }
     if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
       let data = await Benefit.findOne({
         id: id
@@ -44,12 +53,15 @@ module.exports = {
           message: 'Load By id sucess'
         })
       }
-      return res.sendStatus(404);
+      return res.status(404).json('id is notfond');
     }
   },
   PostbenefitUpdate: async function (req, res) {
+    if (_.isUndefined(req.body.id)||req.body.id == ""){
+      return res.badRequest('ID is Undefind.')
+    }
     try {
-
+      if(!_.isUndefined(req.body.benefit_title)&&!_.isUndefined(req.body.benefit_price)&&!_.isUndefined(req.body.benefit_date)&&!_.isUndefined(req.body.benefit_emp_id)){
       await Benefit.update({
         id: req.body.id
       }).set({
@@ -61,6 +73,10 @@ module.exports = {
       })
       return res.json({
         message: 'Update sucsess'
+      })
+    }
+    return res.status(400).json({
+        Error: 'Some Data is Undefined'
       })
 
     } catch (err) {
@@ -76,7 +92,7 @@ module.exports = {
   },
   PostbenefitDelete: async function (req, res) {
     const id = req.body.id
-    if (_.isUndefined(id)){
+    if (_.isUndefined(id||id == "")){
       return res.badRequest('ID is Undefind.')
     }
     await Benefit.destroy({

@@ -21,16 +21,24 @@ module.exports = {
     })
   },
   PostpositionempCreate: async function (req, res) {
-    await Positionemployee.create({
-      emp_id: req.body.emp_id,
-      position_id: req.body.position_id
-    }).fetch()
-    return res.json({
-      message: 'Create Complele'
-    })
+    if(!_.isUndefined(req.body.emp_id)&&!_.isUndefined(req.body.position_id)){
+      await Positionemployee.create({
+        emp_id: req.body.emp_id,
+        position_id: req.body.position_id
+      }).fetch()
+      return res.json({
+        message: 'Create Complele'
+      })
+    }
+    return res.status(400).json({
+        Error: 'Some Data is Undefined'
+      })
   },
   GetpositionempById: async function (req, res) {
     const id = req.param('id')
+    if(isNaN(id)){
+      return res.status(400).json('id is not integer')
+    }
     if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
       let data = await Positionemployee.findOne({
         id: id
@@ -41,12 +49,15 @@ module.exports = {
           message: 'Load By id sucess'
         })
       }
-      return res.sendStatus(404);
+      return res.status(404).json('id is notfond');
     }
   },
   PostpositionempUpdate: async function (req, res) {
+    if (_.isUndefined(req.body.id)||req.body.id == ""){
+      return res.badRequest('ID is Undefind.')
+    }
     try {
-
+      if(!_.isUndefined(req.body.emp_id)&&!_.isUndefined(req.body.position_id)){
       await Positionemployee.update({
         id: req.body.id
       }).set({
@@ -55,6 +66,10 @@ module.exports = {
       })
       return res.json({
         message: 'Update sucsess'
+      })
+    }
+    return res.status(400).json({
+        Error: 'Some Data is Undefined'
       })
 
     } catch (err) {
@@ -70,7 +85,7 @@ module.exports = {
   },
   PostpositionempDelete: async function (req, res) {
     const id = req.body.id
-    if (_.isUndefined(id)){
+    if (_.isUndefined(id)||id == ""){
       return res.badRequest('ID is Undefind.')
     }
     await Positionemployee.destroy({

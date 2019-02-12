@@ -21,6 +21,7 @@ module.exports = {
     })
   },
   PostteamCreate: async function (req, res) {
+    if(!_.isUndefined(req.body.pushdataarray)&&!_.isUndefined(req.body.project_id)&&!_.isUndefined(req.body.position_id)){
     let pushdata = req.body.pushdataarray
     let project_id = req.body.project_id
     let positionid = req.body.position_id
@@ -32,6 +33,10 @@ module.exports = {
         position_id: positionid
       }).fetch()
     }
+  }
+  return res.status(400).json({
+      Error: 'Some Data is Undefined'
+    })
     // let empdate = req.body.emp_start_date;
     // let empdate2 = req.body.emp_end_date;
     // empdate = empdate.split("-");
@@ -56,22 +61,28 @@ module.exports = {
   },
   GetteamById: async function (req, res) {
     const id = req.param('id')
+    if(isNaN(id)){
+      return res.status(400).json('id is not integer')
+    }
     if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
       let data = await Team.findOne({
         id: id
-      }).populate('project_id').populate('emp_id');
+      }).populate('emp_id');
       if (data) {
         return res.json({
           data: data,
           message: 'Load By id sucess'
         })
       }
-      return res.sendStatus(404);
+      return res.status(404).json('id is notfond');
     }
   },
   PostteamUpdate: async function (req, res) {
+    if (_.isUndefined(req.body.id)||req.body.id == ""){
+      return res.badRequest('ID is Undefind.')
+    }
     try {
-
+      if(!_.isUndefined(req.body.pushdataarray)&&!_.isUndefined(req.body.project_id)&&!_.isUndefined(req.body.position_id)){
       let subempdata = req.body.emp_start_date;
       let subempdata2 = req.body.emp_end_date;
       subempdata = subempdata.split("T");
@@ -98,6 +109,10 @@ module.exports = {
       return res.json({
         message: 'Update sucsess'
       })
+    }
+    return res.status(400).json({
+        Error: 'Some Data is Undefined'
+      })
 
     } catch (err) {
       // sails.log(err)
@@ -113,7 +128,7 @@ module.exports = {
   },
   PostteamDelete: async function (req, res) {
     const id = req.body.id
-    if (_.isUndefined(id)){
+    if (_.isUndefined(id)||id == ""){
       return res.badRequest('ID is Undefind.')
     }
     await Team.destroy({
