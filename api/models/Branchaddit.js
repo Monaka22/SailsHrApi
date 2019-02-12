@@ -30,7 +30,7 @@ module.exports = {
       type: 'number'
     },
     branch_addit_date: {
-      type: 'ref', columnType: 'date'
+      type: 'number'
     },
     branch_addit_branch_id:{
       model:'branch',

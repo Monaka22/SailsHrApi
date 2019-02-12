@@ -18,7 +18,7 @@ module.exports = {
       type: 'string'
     },
     project_addit_date:{
-      type: 'ref', columnType: 'date'
+      type: 'number'
     },
     project_addit_price:{
       type : 'number'

@@ -21,10 +21,10 @@ module.exports = {
       type : 'string'
     },
     project_start_date:{
-      type: 'ref', columnType: 'date'
+      type: 'number'
     },
     project_end_date:{
-      type: 'ref', columnType: 'date'
+      type: 'number'
     },
     project_team_name : {
       type : 'string'

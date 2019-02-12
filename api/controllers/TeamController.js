@@ -83,19 +83,19 @@ module.exports = {
     }
     try {
       if(!_.isUndefined(req.body.pushdataarray)&&!_.isUndefined(req.body.project_id)&&!_.isUndefined(req.body.position_id)){
-      let subempdata = req.body.emp_start_date;
-      let subempdata2 = req.body.emp_end_date;
-      subempdata = subempdata.split("T");
-      subempdata2 = subempdata2.split("T");
-      let empdate = subempdata[0];
-      let empdate2 = subempdata2[0];
-      empdate = empdate.split("-");
-      empdate2 = empdate2.split("-");
-      let newDate = empdate[2] + "/" + empdate[1] + "/" + empdate[0];
-      let newDate2 = empdate2[2] + "/" + empdate2[1] + "/" + empdate2[0];
-      timestamp = parseDMY(newDate).getTime();
-      timestamp2 = parseDMY(newDate2).getTime();
-      let day = timestamp2 - timestamp;
+      // let subempdata = req.body.emp_start_date;
+      // let subempdata2 = req.body.emp_end_date;
+      // subempdata = subempdata.split("T");
+      // subempdata2 = subempdata2.split("T");
+      // let empdate = subempdata[0];
+      // let empdate2 = subempdata2[0];
+      // empdate = empdate.split("-");
+      // empdate2 = empdate2.split("-");
+      // let newDate = empdate[2] + "/" + empdate[1] + "/" + empdate[0];
+      // let newDate2 = empdate2[2] + "/" + empdate2[1] + "/" + empdate2[0];
+      // timestamp = parseDMY(newDate).getTime();
+      // timestamp2 = parseDMY(newDate2).getTime();
+      let day = req.body.emp_end_date - req.body.emp_start_date;
       day = Math.floor((day / (3600 * 24)) / 1000);
       let emp_sprint = (day / 7 | 0) + 1;
       await Team.update({
@@ -117,11 +117,11 @@ module.exports = {
     } catch (err) {
       // sails.log(err)
       // sails.log(JSON.stringify(err))
-      let message = await sails.helpers.error(err.code, '')
+      //let message = await sails.helpers.error(err.code, '')
       sails.log(err)
       return res.badRequest({
         err: err,
-        message: message
+        //message: message
       })
       throw err
     }

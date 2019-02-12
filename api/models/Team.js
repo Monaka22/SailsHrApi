@@ -18,12 +18,10 @@ module.exports = {
       model: 'employees'
     },
     emp_start_date: {
-      type: 'ref',
-      columnType: 'date'
+      type: 'number'
     },
     emp_end_date: {
-      type: 'ref',
-      columnType: 'date'
+      type: 'number'
     },
     emp_workday: {
       type: 'number'

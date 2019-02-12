@@ -4,19 +4,20 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
+const moment = require('moment')
 
 module.exports = {
   GetbenefitDatatable: async function (req, res) {
     let data = await Benefit.find().populate('benefit_emp_id');
-    // const branch = JSON.parse(JSON.stringify(branch_addit_branch_id[0]));
+    //const jsondata = JSON.parse(JSON.stringify(data));
     //             const branch_name = branch.branch_addit_branch_id.branch_name;
     //             const branch_id = branch.branch_addit_branch_id.id;
-
     return res.json({
       draw: 0,
       recordsTotal: data.length,
       recordsFiltered: data.length,
       data: data,
+      //date:date
 
     })
   },

@@ -47,7 +47,7 @@ module.exports = {
         emp_name.push(positionpjdata[i].emp_id.emp_name);
         emp_nickname.push(positionpjdata[i].emp_id.emp_nickname);
         emp_position_id.push(positionpjdata[i].position_id.id);
-        emp_end_date.push("2002-01-01");
+        emp_end_date.push(1009843200000);
     }
     emp_id = emp_id.concat(emp_id_t);
     emp_name = emp_name.concat(emp_name_t);
@@ -69,23 +69,23 @@ module.exports = {
                 let empenddate = emp_end_date[j];
                 let projectstartdate = project_start_date;
                 let projectenddate = project_end_date;
-                empenddate = empenddate.split("T");
-                projectstartdate = projectstartdate.split("T");
-                projectenddate =  projectenddate.split("T");
-                empenddate = empenddate[0];
-                projectstartdate = projectstartdate[0];
-                projectenddate = projectenddate[0];
-                empenddate = empenddate.split("-");
-                projectstartdate = projectstartdate.split("-");
-                projectenddate = projectenddate.split("-");
-                let newDate = empenddate[2] + "/" + empenddate[1] + "/" + empenddate[0];
-                let newDate2 = projectstartdate[2] + "/" + projectstartdate[1] + "/" + projectstartdate[0];
-                let newDate3 = projectenddate[2] + "/" + projectenddate[1] + "/" + projectenddate[0];
-                timestamp = parseDMY(newDate).getTime();
-                timestamp2 = parseDMY(newDate2).getTime();
-                timestamp3 = parseDMY(newDate3).getTime();
+                // empenddate = empenddate.split("T");
+                // projectstartdate = projectstartdate.split("T");
+                // projectenddate =  projectenddate.split("T");
+                // empenddate = empenddate[0];
+                // projectstartdate = projectstartdate[0];
+                // projectenddate = projectenddate[0];
+                // empenddate = empenddate.split("-");
+                // projectstartdate = projectstartdate.split("-");
+                // projectenddate = projectenddate.split("-");
+                // let newDate = empenddate[2] + "/" + empenddate[1] + "/" + empenddate[0];
+                // let newDate2 = projectstartdate[2] + "/" + projectstartdate[1] + "/" + projectstartdate[0];
+                // let newDate3 = projectenddate[2] + "/" + projectenddate[1] + "/" + projectenddate[0];
+                // timestamp = parseDMY(newDate).getTime();
+                // timestamp2 = parseDMY(newDate2).getTime();
+                // timestamp3 = parseDMY(newDate3).getTime();
                 //sails.log(timestamp,timestamp2,timestamp3)
-                if (timestamp > timestamp2 && timestamp < timestamp3) {
+                if (empenddate > projectstartdate && empenddate < projectenddate) {
                    free = "ไม่ว่าง"
                 }else{
                     free = "ว่าง"

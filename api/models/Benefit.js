@@ -23,7 +23,7 @@ module.exports = {
       type:'number'
     },
     benefit_date:{
-      type: 'ref', columnType: 'date'
+      type: 'number'
     },
     benefit_note:{
       type:'string'
