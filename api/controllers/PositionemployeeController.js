@@ -121,7 +121,7 @@ module.exports = {
         var jsonObj = {}
         var array = []
         for(i=0; i < id.length; i++){
-          array.push({id:id[i],postion_name:postion_name[i]})
+          array.push({id:id[i],position_name:postion_name[i]})
           jsonObj =  array ;
       } 
       data = jsonObj;
