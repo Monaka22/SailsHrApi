@@ -31,13 +31,13 @@ module.exports = {
       var token = jwt.sign({
         user: user.id
       }, sails.config.custom.jwtSecret, {
-        expiresIn: '3h'
+        expiresIn: '1d'
       }) // sails.config.jwtExpires})
       // set a cookie on the client side that they can't modify unless they sign out (just for web apps)
       res.cookie('sailsjwt', token, {
         signed: true,
         // domain: '.yourdomain.com', // always use this in production to whitelist your domain
-        maxAge: 10800 //sails.config.jwtExpires
+        maxAge: 86400 //sails.config.jwtExpires
       })
       //sails.log(token)
       // provide the token to the client in case they want to store it locally to use in the header (eg mobile/desktop apps)
@@ -84,12 +84,12 @@ module.exports = {
     var token = jwt.sign({
       user: user.id
     }, sails.config.custom.jwtSecret, {
-      expiresIn: '3s'
+      expiresIn: '1d'
     }) //sails.config.jwtExpires})
     res.cookie('sailsjwt', token, {
       signed: true,
       // domain: '.yourdomain.com', // always use this in production to whitelist your domain
-      maxAge: 3 // sails.config.jwtExpires
+      maxAge: 86400 // sails.config.jwtExpires
     })
     sails.log(token)
     // if this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,

@@ -81,21 +81,28 @@ module.exports = {
   },
   PostPositionDelete: async function (req, res) {
     const id = req.body.id
-    if (_.isUndefined(id)||id == ""){
-      return res.badRequest('ID is Undefind.')
+    if(isNaN(req.body.id)){
+      return res.status(400).json('id is String or id Undefined')
     }
-    await Position.destroy({
-      id: id
-    }).exec(function (err) {
-      if (err) {
-        return res.sendStaus(500, {
-          error: "database error"
+    if(req.body.id==""){
+      return res.status(400).json('id is Undefined')
+    } 
+    if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
+      let data = await Position.findOne({
+        id: id
+      })
+      if (data) {
+        await Position.update({
+          id: req.body.id
+        }).set({
+          status: 0
+        })
+        return res.json({
+          message: 'Delete sucsess'
         })
       }
-      return res.json({
-        message: 'Delete sucsess'
-      })
-    })
+    }
+    return res.sendStatus(404);
   },
 
 };
