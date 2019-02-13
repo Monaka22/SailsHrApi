@@ -7,7 +7,6 @@
 
 module.exports = {
     GetDashposition : async function (req,res) {
-        
     let data = await Positionemployee.find().populate('position_id');
     //console.log(data.data.branch_name);
     const jdata = JSON.parse(JSON.stringify(data));
@@ -19,7 +18,9 @@ module.exports = {
     const jdataposition = JSON.parse(JSON.stringify(dataposition));
     positionname = [];
     for (let i = 0; i < jdataposition.length; i++) {
-        positionname.push(jdataposition[i].position_name) 
+        if(jdataposition[i].status != 0){
+            positionname.push(jdataposition[i].position_name) 
+        }
     }
     total =0;
     positiontotal = [];

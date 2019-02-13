@@ -105,7 +105,26 @@ module.exports = {
     const id = req.param('id')
     if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
       let data = await Positionemployee.find({where:{emp_id:id}}).populate('position_id');
+      //sails.log(data)
       if (data) {
+        const jdata = JSON.parse(JSON.stringify(data));
+        let id = [];
+        let postion_name = [];
+        for (let i = 0; i < jdata.length; i++) {
+          if(jdata[i].position_id.status != 0){
+            id.push(jdata[i].id)
+            postion_name.push(jdata[i].position_id.position_name) 
+          }
+        }
+        // sails.log(id)
+        // sails.log(postion_name)
+        var jsonObj = {}
+        var array = []
+        for(i=0; i < id.length; i++){
+          array.push({id:id[i],postion_name:postion_name[i]})
+          jsonObj =  array ;
+      } 
+      data = jsonObj;
         return res.json({
           data: data,
           message: 'Load By id sucess'
