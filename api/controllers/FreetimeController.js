@@ -32,7 +32,8 @@ module.exports = {
     let emp_id = [];
     let emp_name = [];
     let emp_nickname = [];
-    let freetime = [];
+    let emp_start_date = [];
+    let emp_start_date_t = [];
     let project_start_date = projectpjdata.project_start_date;
     let project_end_date = projectpjdata.project_end_date;
     for (let i = 0; i < teampjdata.length; i++) {
@@ -41,6 +42,7 @@ module.exports = {
         emp_nickname_t.push(teampjdata[i].emp_id.emp_nickname);
         emp_end_date_t.push(teampjdata[i].emp_end_date);
         emp_position_id_t.push(teampjdata[i].position_id.id);
+        emp_start_date_t.push(teampjdata[i].emp_end_date);
     }
     for (let i = 0; i < positionpjdata.length; i++) {
         emp_id.push(positionpjdata[i].emp_id.id);
@@ -48,12 +50,14 @@ module.exports = {
         emp_nickname.push(positionpjdata[i].emp_id.emp_nickname);
         emp_position_id.push(positionpjdata[i].position_id.id);
         emp_end_date.push(1009843200000);
+        emp_start_date.push(1009843200000);
     }
     emp_id = emp_id.concat(emp_id_t);
     emp_name = emp_name.concat(emp_name_t);
     emp_nickname = emp_nickname.concat(emp_nickname_t);
     emp_position_id = emp_position_id.concat(emp_position_id_t);
     emp_end_date = emp_end_date.concat(emp_end_date_t);
+    emp_start_date = emp_start_date.concat(emp_start_date_t);
     // sails.log(emp_id)
     //  sails.log(emp_name)
     //  sails.log(emp_nickname)
@@ -67,6 +71,7 @@ module.exports = {
           let freetime2 = [];
             for(let j=0 ; j < emp_id.length;j++){
                 let empenddate = emp_end_date[j];
+                let empstartdate = emp_start_date[j];
                 let projectstartdate = project_start_date;
                 let projectenddate = project_end_date;
                 // empenddate = empenddate.split("T");
@@ -85,10 +90,13 @@ module.exports = {
                 // timestamp2 = parseDMY(newDate2).getTime();
                 // timestamp3 = parseDMY(newDate3).getTime();
                 //sails.log(timestamp,timestamp2,timestamp3)
-                if (empenddate > projectstartdate && empenddate < projectenddate) {
-                   free = "ไม่ว่าง"
+                if (empenddate >= projectstartdate && empenddate <= projectenddate) {
+                        free = "ไม่ว่าง"
                 }else{
                     free = "ว่าง"
+                }
+                if(empstartdate >= projectstartdate){
+                    free = "ไม่ว่าง"
                 }
                 freetime2.push(free);
             }

@@ -98,6 +98,9 @@ module.exports = {
       let day = req.body.emp_end_date - req.body.emp_start_date;
       day = Math.floor((day / (3600 * 24)) / 1000);
       let emp_sprint = (day / 7 | 0) + 1;
+      if(day = 0){
+        emp_sprint = 0
+      }
       await Team.update({
         id: req.body.id
       }).set({
