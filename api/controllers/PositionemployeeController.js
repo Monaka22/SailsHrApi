@@ -124,7 +124,10 @@ module.exports = {
           array.push({id:id[i],position_name:postion_name[i]})
           jsonObj =  array ;
       } 
-      data = jsonObj;
+      if(jdata.length != 0){
+        data = jsonObj;
+      }
+
         return res.json({
           data: data,
           message: 'Load By id sucess'
