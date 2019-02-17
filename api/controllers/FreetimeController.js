@@ -93,11 +93,13 @@ module.exports = {
                 if (empenddate >= projectstartdate && empenddate <= projectenddate) {
                         free = "ไม่ว่าง"
                 }else{
-                    free = "ว่าง"
-                }
-                if(empstartdate >= projectstartdate){
+                  if(empstartdate >= projectstartdate){
                     free = "ไม่ว่าง"
+                  }else{
+                  free = "ว่าง"
+                  }
                 }
+               
                 freetime2.push(free);
             }
             //sails.log(freetime2)

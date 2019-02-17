@@ -97,6 +97,7 @@ module.exports.routes = {
   'GET /team/:id/view': 'TeamController.GetteamById',
   'POST /team/update': 'TeamController.PostteamUpdate',
   'POST /team/delete': 'TeamController.PostteamDelete',
+  'POST /m/team/create': 'TeamController.PostteamCreateM',
   //Projectaddit API
   'GET /projectaddit/datatable': 'ProjectadditController.GetprojectadditDatatable',
   'POST /projectaddit/create': 'ProjectadditController.PostprojectadditCreate',

@@ -190,7 +190,27 @@ module.exports = {
       }
       return res.sendStatus(404);
     }
+  },
+  PostteamCreateM: async function (req, res) {
+    if(!_.isUndefined(req.body.emp_id)&&!_.isUndefined(req.body.project_id)&&!_.isUndefined(req.body.position_id)){
+    let emp_id = req.body.emp_id
+    let project_id = req.body.project_id
+    let positionid = req.body.position_id
+    for (let i = 0; i < pushdata.length; i++) {
+      await Team.create({
+        emp_id: emp_id,
+        project_id: project_id,
+        position_id: positionid
+      }).fetch()
+    }
+    return res.json({
+      message: 'Create Complele'
+    })
   }
+  return res.status(400).json({
+      Error: 'Some Data is Undefined'
+    })
+  },
 
 };
 
