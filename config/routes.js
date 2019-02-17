@@ -105,30 +105,36 @@ module.exports.routes = {
   'POST /projectaddit/update': 'ProjectadditController.PostprojectadditUpdate',
   'POST /projectaddit/delete': 'ProjectadditController.PostprojectadditDelete',
   //Branch cost API
-  'GET /branchcost/addit/:id/view': 'BranchadditController.GetbranchcostGetAdditByid',
-  'GET /branchcost/fixcost/:id/view': 'BranchadditController.GetbranchcostGetFixcostByid',
+  'GET /branchcost/addit/:id/view': 'BranchadditController.GetbranchcostGetAdditByid', // id : "branch_id"
+  'GET /branchcost/fixcost/:id/view': 'BranchadditController.GetbranchcostGetFixcostByid',// id:"branch_id"
   //Employee Benefit Api
-  'GET /employee/benefit/:id/view': 'BenefitController.GetEmployeeBenefitGetByid',
+  'GET /employee/benefit/:id/view': 'BenefitController.GetEmployeeBenefitGetByid', // id : "emp_id"
   //Employee find Position API
-  'GET /emp/position/:id/view': 'PositionemployeeController.GetEmployeePositionGetByid',
+  'GET /emp/position/:id/view': 'PositionemployeeController.GetEmployeePositionGetByid', // id : "emp_id"
   //Chaiwat API
   'GET /555': 'TeamController.TestDatetotime',
   //Position find Employee API
-  'GET /position/emp/:id/view': 'PositionemployeeController.GetPositionEmployeeGetByid',
+  'GET /position/emp/:id/view': 'PositionemployeeController.GetPositionEmployeeGetByid', // id : "position_id"
   //Projecc addit API
-  'GET /project/projectaddit/:id/view': 'ProjectadditController.GetAdditProjectGetByid',
+  'GET /project/projectaddit/:id/view': 'ProjectadditController.GetAdditProjectGetByid', // id : "project_id"
   //test array
   //'POST /array': 'CostdataController.Array',
   //Teamproject API
-  'GET /project/team/:id/view' : 'TeamController.GetTeamProjectGetByid',
+  'GET /project/team/:id/view' : 'TeamController.GetTeamProjectGetByid', //id : "project_id"
   //manday
-  'GET /manday/project/:id/view' : 'MandayController.GetMandayGetByid',
+  'GET /manday/project/:id/view' : 'MandayController.GetMandayGetByid', //id : "project_id"
   'GET /manday/emp/datatable' : 'MandayController.GetMandayDatatable',
   //CheckFreetime API
-  'GET /freetime/emp/:id/:position_id' : 'FreetimeController.Getfreetime',
+  'GET /freetime/emp/:id/:position_id' : 'FreetimeController.Getfreetime', //id : "project_id" position_id:"position_id"
   //'GET /freetime/emp/:id/:position_id' : 'FreetimeController.Getnewfreetime',
   //Dashboard API
   'GET /dashboard/position':'DashboardController.GetDashposition',
+  
+  
+  //ถ้าอันไหนไม่ได้อธิบายว่า id คืออะไร แสดงว่าเป็นไอดีของapiนั้นเอง เช่น /fixcost/:id/view คือใช้ fixcosst_id
+  
+  
+  
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
