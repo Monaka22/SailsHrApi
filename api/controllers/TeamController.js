@@ -4,7 +4,8 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
-
+const moment = require('moment')
+moment.locale('th');
 module.exports = {
   GetteamDatatable: async function (req, res) {
     let data = await Team.find().populate('emp_id');
@@ -69,6 +70,8 @@ module.exports = {
         id: id
       }).populate('emp_id');
       if (data) {
+        Object.assign(data, {emp_start_date_format:moment(data.emp_start_date).format('DD MMMM YYYY')
+      ,emp_end_date_format:moment(data.emp_end_date).format('DD MMMM YYYY')});
         return res.json({
           data: data,
           message: 'Load By id sucess'
@@ -183,6 +186,30 @@ module.exports = {
       }).populate('emp_id').populate('position_id');
 
       if (data) {
+        const jdata = JSON.parse(JSON.stringify(data));
+        let id = [];
+        let emp_start_date = [];
+        let emp_end_date = [];
+        let emp_start_date_format = [];
+        let emp_end_date_format = [];
+        let emp_id = [];
+        let position_id = [];
+        for (let i = 0; i < jdata.length; i++) {
+          id.push(jdata[i].id)
+          emp_start_date.push(jdata[i].emp_start_date);
+          emp_end_date.push(jdata[i].emp_end_date);
+          emp_id.push(jdata[i].emp_id);
+          position_id.push(jdata[i].position_id);
+          emp_start_date_format.push(moment(jdata[i].emp_start_date).format('DD MMMM YYYY'));
+          emp_end_date_format.push(moment(jdata[i].emp_end_date).format('DD MMMM YYYY'));
+        }
+        var jsonObj = {}
+        var array = []
+       for(i=0; i < id.length; i++){
+                         array.push({id:id[i],emp_start_date:emp_start_date[i],emp_end_date:emp_end_date[i],emp_id:emp_id[i],position_id:position_id[i],emp_start_date_format:emp_start_date_format[i],emp_end_date_format:emp_end_date_format[i]})
+                    jsonObj =  array ;    
+           }
+           data = jsonObj
         return res.json({
           data: data,
           message: 'Load By id sucess'

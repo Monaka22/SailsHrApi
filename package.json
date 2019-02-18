@@ -20,10 +20,12 @@
     "sails-hook-orm": "^2.0.0-16",
     "sails-hook-sockets": "^1.4.0",
     "sails-mysql": "^1.0.1",
+    "sails-swagger": "^0.5.1",
     "socket.io-redis": "4.0.0"
   },
   "devDependencies": {
-    "eslint": "3.19.0"
+    "eslint": "3.19.0",
+    "swagger-ui": "^2.2.10"
   },
   "scripts": {
     "start": "NODE_ENV=production node app.js",

@@ -4,7 +4,8 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
-
+const moment = require('moment')
+moment.locale('th');
 module.exports = {
   GetprojectmanageDatatable: async function (req, res) {
 
@@ -16,6 +17,28 @@ module.exports = {
             total += jdata[i].project_total_cost
     
           }
+      let id = [];
+      let project_name =[];
+      let project_costomer_name =[];
+      let project_start_date =[];
+      let project_start_date_format =[];
+      let project_team_name = [];
+      for (let i = 0; i < jdata.length; i++) {
+        id.push(jdata[i].id)
+        project_name.push(jdata[i].project_name);
+        project_costomer_name.push(jdata[i].project_costomer_name);
+        project_team_name.push(jdata[i].project_team_name);
+        project_start_date.push(jdata[i].project_start_date);
+        project_start_date_format.push(moment(jdata[i].project_start_date).format('DD MMMM YYYY'));
+    }
+    var jsonObj = {}
+    var array = []
+   for(i=0; i < id.length; i++){
+                     array.push({id:id[i],project_name:project_name[i],project_costomer_name:project_costomer_name[i],project_team_name:project_team_name[i],project_start_date:project_start_date[i],project_start_date_format:project_start_date_format[i]})
+                jsonObj =  array ;    
+       }
+       data = jsonObj
+
     return res.json({
       draw: 0,
       recordsTotal: data.length,
@@ -55,6 +78,8 @@ module.exports = {
         id: id
       });
       if (data) {
+        Object.assign(data, {project_start_date_format:moment(data.project_start_date).format('DD MMMM YYYY')
+      ,project_end_date_format:moment(data.project_end_date).format('DD MMMM YYYY')});
         return res.json({
           data: data,
           message: 'Load By id sucess'

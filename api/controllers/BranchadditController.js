@@ -4,7 +4,8 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
-
+const moment = require('moment')
+moment.locale('th');
 module.exports = {
   GetbranchadditDatatable: async function (req, res) {
     let data = await Branchaddit.find().populate('branch_addit_branch_id');
@@ -47,6 +48,7 @@ module.exports = {
         id: id
       }).populate('branch_addit_branch_id');
       if (data) {
+        Object.assign(data, {branch_addit_date_format:moment(data.branch_addit_date).format('DD MMMM YYYY')});
         return res.json({
           data: data,
           message: 'Load By id sucess'
@@ -110,6 +112,28 @@ module.exports = {
     if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
       let data = await Branchaddit.find({where:{branch_addit_branch_id:id}});
       if (data) {
+        const jdata = JSON.parse(JSON.stringify(data));
+        let id = [];
+            let branch_addit_title =[];
+            let branch_addit_price =[];
+            let branch_addit_date =[];
+            let branch_addit_branch_id =[];
+            let branch_addit_date_format = [];
+            for (let i = 0; i < jdata.length; i++) {
+              id.push(jdata[i].id)
+              branch_addit_title.push(jdata[i].branch_addit_title);
+              branch_addit_price.push(jdata[i].branch_addit_price);
+              branch_addit_date.push(jdata[i].branch_addit_date);
+              branch_addit_branch_id.push(jdata[i].branch_addit_branch_id)
+              branch_addit_date_format.push(moment(jdata[i].branch_addit_date).format('DD MMMM YYYY'));
+          }
+          var jsonObj = {}
+          var array = []
+         for(i=0; i < id.length; i++){
+                           array.push({id:id[i],branch_addit_title:branch_addit_title[i],branch_addit_price:branch_addit_price[i],branch_addit_date:branch_addit_date[i],branch_addit_branch_id:branch_addit_branch_id[i],branch_addit_date_format:branch_addit_date_format[i]})
+                      jsonObj =  array ;    
+             }
+             data = jsonObj
         return res.json({
           data: data,
           message: 'Load By id sucess'

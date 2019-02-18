@@ -29,7 +29,7 @@ module.exports = {
       })
     }
     return res.status(400).json({
-      Error: 'Data is Undefined'
+      Error: 'Some Data is Undefined'
     })
   },
   GetPositionById: async function (req, res) {

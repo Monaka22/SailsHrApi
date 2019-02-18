@@ -4,13 +4,12 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
-
+const moment = require('moment')
+moment.locale('th');
 module.exports = {
     GetprojectadditDatatable: async function (req, res) {
         let data = await Projectaddit.find().populate('project_id');
-        // const branch = JSON.parse(JSON.stringify(branch_addit_branch_id[0]));
-        //             const branch_name = branch.branch_addit_branch_id.branch_name;
-        //             const branch_id = branch.branch_addit_branch_id.id;
+
     
         return res.json({
           draw: 0,
@@ -114,9 +113,27 @@ module.exports = {
           let costprojectaddit = 0
           for (let i = 0; i < data.length; i++) {
             costprojectaddit += jdata[i].project_addit_price
-    
           }
           if (data) {
+            let id = [];
+            let project_addit_title =[];
+            let project_addit_date =[];
+            let project_addit_price =[];
+            let project_addit_date_format =[];
+            for (let i = 0; i < jdata.length; i++) {
+              id.push(jdata[i].id)
+              project_addit_title.push(jdata[i].project_addit_title);
+              project_addit_date.push(jdata[i].project_addit_date);
+              project_addit_price.push(jdata[i].project_addit_price);
+              project_addit_date_format.push(moment(jdata[i].project_addit_date).format('DD MMMM YYYY'));
+          }
+          var jsonObj = {}
+          var array = []
+         for(i=0; i < id.length; i++){
+                           array.push({id:id[i],project_addit_title:project_addit_title[i],project_addit_date:project_addit_date[i],project_addit_price:project_addit_price[i],project_addit_date_format:project_addit_date_format[i]})
+                      jsonObj =  array ;    
+             }
+             data = jsonObj
             return res.json({
               data: data,
               totaladdit : costprojectaddit,

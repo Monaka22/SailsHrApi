@@ -5,7 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 const moment = require('moment')
-
+moment.locale('th');
 module.exports = {
   GetbenefitDatatable: async function (req, res) {
     let data = await Benefit.find().populate('benefit_emp_id');
@@ -49,6 +49,7 @@ module.exports = {
         id: id
       }).populate('benefit_emp_id');
       if (data) {
+        Object.assign(data, {benefit_date_format:moment(data.benefit_date).format('DD MMMM YYYY')});
         return res.json({
           data: data,
           message: 'Load By id sucess'
