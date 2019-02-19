@@ -64,7 +64,7 @@ module.exports = {
         id: req.body.id
       }).set({
         branch_name: req.body.branch_name,
-        branch_address: req.body.branch_address
+        branch_address: req.body.branch_address,
       })
       return res.json({
         message: 'Update sucsess'
@@ -73,7 +73,6 @@ module.exports = {
     return res.status(400).json({
         Error: 'Some Data is Undefined'
       })
-     
     } catch (err) {
       // sails.log(err)
       // sails.log(JSON.stringify(err))
@@ -81,7 +80,7 @@ module.exports = {
       sails.log(err)
       return res.badRequest({
         err: err,
-        //message: message
+        message: 'Code is error'
       })
     }
   },

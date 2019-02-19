@@ -75,7 +75,7 @@ module.exports = {
       sails.log(err)
       return res.badRequest({
         err: err,
-       // message: message
+        message: 'Code is error'
       })
     }
   },

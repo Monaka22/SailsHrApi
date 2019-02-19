@@ -80,7 +80,7 @@ module.exports = {
     })
     const oldfilename = JSON.parse(JSON.stringify(oldpath[0]));
     const filename = oldfilename.emp_id_card;
-    sails.log(filename);
+    //sails.log(filename);
     req.file('filetoupload').upload({
       dirname: require('path').resolve(sails.config.appPath, 'assets/images'),
       saveAs: filename,

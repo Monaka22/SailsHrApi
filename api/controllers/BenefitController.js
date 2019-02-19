@@ -84,11 +84,11 @@ module.exports = {
     } catch (err) {
       // sails.log(err)
       // sails.log(JSON.stringify(err))
-      let message = await sails.helpers.error(err.code, '')
+      //let message = await sails.helpers.error(err.code, '')
       sails.log(err)
       return res.badRequest({
         err: err,
-        message: message
+        message: 'Code is error'
       })
     }
   },

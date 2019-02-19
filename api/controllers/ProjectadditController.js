@@ -8,9 +8,7 @@ const moment = require('moment')
 moment.locale('th');
 module.exports = {
     GetprojectadditDatatable: async function (req, res) {
-        let data = await Projectaddit.find().populate('project_id');
-
-    
+        let data = await Projectaddit.find().populate('project_id'); 
         return res.json({
           draw: 0,
           recordsTotal: data.length,
@@ -79,11 +77,11 @@ module.exports = {
         } catch (err) {
           // sails.log(err)
           // sails.log(JSON.stringify(err))
-          let message = await sails.helpers.error(err.code, '')
+         // let message = await sails.helpers.error(err.code, '')
           sails.log(err)
           return res.badRequest({
             err: err,
-            message: message
+            message: 'Code is error'
           })
         }
       },

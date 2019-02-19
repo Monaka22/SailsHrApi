@@ -62,7 +62,7 @@ module.exports = {
       return res.badRequest('ID is Undefind.')
     }
     try {
-      if(!_.isUndefined(req.body.benefit_title)&&!_.isUndefined(req.body.benefit_price)&&!_.isUndefined(req.body.benefit_date)&&!_.isUndefined(req.body.benefit_emp_id)){
+      if(!_.isUndefined(req.body.branch_addit_title)&&!_.isUndefined(req.body.branch_addit_price)&&!_.isUndefined(req.body.branch_addit_date)&&!_.isUndefined(req.body.branch_addit_branch_id)){
       await Branchaddit.update({
         id: req.body.id
       }).set({
@@ -81,11 +81,11 @@ module.exports = {
     } catch (err) {
       // sails.log(err)
       // sails.log(JSON.stringify(err))
-      let message = await sails.helpers.error(err.code, '')
+      //let message = await sails.helpers.error(err.code, '')
       sails.log(err)
       return res.badRequest({
         err: err,
-        message: message
+        message: 'Code is error'
       })
     }
   },

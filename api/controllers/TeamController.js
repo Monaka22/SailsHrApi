@@ -26,7 +26,7 @@ module.exports = {
     let pushdata = req.body.pushdataarray
     let project_id = req.body.project_id
     let positionid = req.body.position_id
-    sails.log(project_id)
+    //sails.log(project_id)
     for (let i = 0; i < pushdata.length; i++) {
       await Team.create({
         emp_id: pushdata[i],
@@ -124,10 +124,10 @@ module.exports = {
       // sails.log(err)
       // sails.log(JSON.stringify(err))
       //let message = await sails.helpers.error(err.code, '')
-      sails.log(err)
+      //sails.log(err)
       return res.badRequest({
         err: err,
-        //message: message
+        message: 'Code is error'
       })
       throw err
     }
