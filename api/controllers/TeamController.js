@@ -194,19 +194,21 @@ module.exports = {
         let emp_end_date_format = [];
         let emp_id = [];
         let position_id = [];
+        let updatedAt = [];
         for (let i = 0; i < jdata.length; i++) {
           id.push(jdata[i].id)
           emp_start_date.push(jdata[i].emp_start_date);
           emp_end_date.push(jdata[i].emp_end_date);
           emp_id.push(jdata[i].emp_id);
           position_id.push(jdata[i].position_id);
+          updatedAt.push(jdata[i].updatedAt);
           emp_start_date_format.push(moment(jdata[i].emp_start_date).format('DD MMMM YYYY'));
           emp_end_date_format.push(moment(jdata[i].emp_end_date).format('DD MMMM YYYY'));
         }
         var jsonObj = {}
         var array = []
        for(i=0; i < id.length; i++){
-                         array.push({id:id[i],emp_start_date:emp_start_date[i],emp_end_date:emp_end_date[i],emp_id:emp_id[i],position_id:position_id[i],emp_start_date_format:emp_start_date_format[i],emp_end_date_format:emp_end_date_format[i]})
+                         array.push({updatedAt:updatedAt[i],id:id[i],emp_start_date:emp_start_date[i],emp_end_date:emp_end_date[i],emp_id:emp_id[i],position_id:position_id[i],emp_start_date_format:emp_start_date_format[i],emp_end_date_format:emp_end_date_format[i]})
                     jsonObj =  array ;    
            }
            data = jsonObj
