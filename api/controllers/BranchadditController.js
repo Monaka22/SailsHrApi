@@ -133,7 +133,9 @@ module.exports = {
                            array.push({id:id[i],branch_addit_title:branch_addit_title[i],branch_addit_price:branch_addit_price[i],branch_addit_date:branch_addit_date[i],branch_addit_branch_id:branch_addit_branch_id[i],branch_addit_date_format:branch_addit_date_format[i]})
                       jsonObj =  array ;    
              }
-             data = jsonObj
+             if(jdata.length != 0){
+              data = jsonObj;
+            }
         return res.json({
           data: data,
           message: 'Load By id sucess'

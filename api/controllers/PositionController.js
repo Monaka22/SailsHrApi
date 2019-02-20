@@ -10,7 +10,6 @@ module.exports = {
     let data = await Position.find().where({
       status: 1
     })
-
     return res.json({
       draw: 0,
       recordsTotal: data.length,
