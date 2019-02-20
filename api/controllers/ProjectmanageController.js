@@ -23,18 +23,20 @@ module.exports = {
       let project_start_date =[];
       let project_start_date_format =[];
       let project_team_name = [];
+      let project_total_cost = [];
       for (let i = 0; i < jdata.length; i++) {
         id.push(jdata[i].id)
         project_name.push(jdata[i].project_name);
         project_costomer_name.push(jdata[i].project_costomer_name);
         project_team_name.push(jdata[i].project_team_name);
         project_start_date.push(jdata[i].project_start_date);
+        project_total_cost.push(jdata[i].project_total_cost[i]);
         project_start_date_format.push(moment(jdata[i].project_start_date).format('DD MMMM YYYY'));
     }
     var jsonObj = {}
     var array = []
    for(i=0; i < id.length; i++){
-                     array.push({id:id[i],project_name:project_name[i],project_costomer_name:project_costomer_name[i],project_team_name:project_team_name[i],project_start_date:project_start_date[i],project_start_date_format:project_start_date_format[i]})
+                     array.push({id:id[i],project_name:project_name[i],project_costomer_name:project_costomer_name[i],project_team_name:project_team_name[i],project_start_date:project_start_date[i],project_start_date_format:project_start_date_format[i],project_total_cost:project_total_cost[i]})
                 jsonObj =  array ;    
        }
        data = jsonObj
