@@ -211,7 +211,9 @@ module.exports = {
                          array.push({updatedAt:updatedAt[i],id:id[i],emp_start_date:emp_start_date[i],emp_end_date:emp_end_date[i],emp_id:emp_id[i],position_id:position_id[i],emp_start_date_format:emp_start_date_format[i],emp_end_date_format:emp_end_date_format[i]})
                     jsonObj =  array ;    
            }
-           data = jsonObj
+           if(jdata.length != 0){
+            data = jsonObj;
+          }
         return res.json({
           data: data,
           message: 'Load By id sucess'

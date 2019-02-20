@@ -131,7 +131,9 @@ module.exports = {
                            array.push({id:id[i],project_addit_title:project_addit_title[i],project_addit_date:project_addit_date[i],project_addit_price:project_addit_price[i],project_addit_date_format:project_addit_date_format[i]})
                       jsonObj =  array ;    
              }
-             data = jsonObj
+             if(jdata.length != 0){
+              data = jsonObj;
+            }
             return res.json({
               data: data,
               totaladdit : costprojectaddit,

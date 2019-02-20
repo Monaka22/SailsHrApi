@@ -39,7 +39,9 @@ module.exports = {
                      array.push({id:id[i],project_name:project_name[i],project_costomer_name:project_costomer_name[i],project_team_name:project_team_name[i],project_start_date:project_start_date[i],project_start_date_format:project_start_date_format[i],project_total_cost:project_total_cost[i]})
                 jsonObj =  array ;    
        }
-       data = jsonObj
+       if(jdata.length != 0){
+        data = jsonObj;
+      }
 
     return res.json({
       draw: 0,

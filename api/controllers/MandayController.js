@@ -72,7 +72,11 @@ module.exports = {
             id: id
           }).set({
             project_total_cost: projecttotal,})
-        return res.json({data:jsonObj,
+
+            if(jdata.length != 0){
+                data = jsonObj;
+              }
+        return res.json({data:data,
         project_cost_total:projecttotal,project_name:pjdata.project_name,project_costomer_name : pjdata.project_costomer_name})
 
 
@@ -119,7 +123,10 @@ module.exports = {
              array.push({emp_id:emp_id[i],emp_name:emp_name[i],emp_nickname:emp_nickname[i],manday:mandayArray[i],Selling:mandayArray[i]*3})
              jsonObj =  array ;
          } 
-         return res.json({data:jsonObj})
+         if(jdata.length != 0){
+            data = jsonObj;
+          }
+         return res.json({data})
     
     
     },
