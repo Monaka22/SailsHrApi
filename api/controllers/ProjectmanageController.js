@@ -30,7 +30,7 @@ module.exports = {
         project_costomer_name.push(jdata[i].project_costomer_name);
         project_team_name.push(jdata[i].project_team_name);
         project_start_date.push(jdata[i].project_start_date);
-        project_total_cost.push(jdata[i].project_total_cost[i]);
+        project_total_cost.push(jdata[i].project_total_cost);
         project_start_date_format.push(moment(jdata[i].project_start_date).format('DD MMMM YYYY'));
     }
     var jsonObj = {}
