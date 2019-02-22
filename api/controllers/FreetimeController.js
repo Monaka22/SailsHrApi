@@ -9,11 +9,12 @@ module.exports = {
   Getfreetime: async function (req, res) {
     position_id = req.param('position_id');
     project_id = req.param('id');
+    let data = await Costdata.find()
     let positiondata = await Positionemployee.find({
       where: {
         position_id: position_id
       }
-    }).populate('emp_id').populate('position_id');
+    }).populate('position_id').populate('emp_id');
     let teamdata = await Team.find().populate('emp_id').populate('position_id');
     let projectdata = await Projectmanage.findOne({
       id: project_id
@@ -37,7 +38,7 @@ module.exports = {
     let project_start_date = projectpjdata.project_start_date;
     let project_end_date = projectpjdata.project_end_date;
     for (let i = 0; i < teampjdata.length; i++) {
-      if(teampjdata[i].emp_id.staus != 0){
+      if(teampjdata[i].emp_id.status != 0){
         emp_id_t.push(teampjdata[i].emp_id.id);
         emp_name_t.push(teampjdata[i].emp_id.emp_name);
         emp_nickname_t.push(teampjdata[i].emp_id.emp_nickname);
@@ -47,7 +48,7 @@ module.exports = {
       }  
     }
     for (let i = 0; i < positionpjdata.length; i++) {
-      if(positionpjdata[i].emp_id.staus != 0){
+      if(positionpjdata[i].emp_id.status != 0){
         emp_id.push(positionpjdata[i].emp_id.id);
         emp_name.push(positionpjdata[i].emp_id.emp_name);
         emp_nickname.push(positionpjdata[i].emp_id.emp_nickname);
@@ -200,10 +201,11 @@ module.exports = {
                              jsonObj2 =  array2 ;
                     
                 }
-                    var data ={}
-                    data = {data:jsonObj2}
 
-                return res.json(data)
+              if(positiondata.length != 0){
+              data = jsonObj2;
+            }
+            return res.json({data: data})
 
             //sails.log(push[0][3])
             // for (let index = 0; index < array.length; index++) {

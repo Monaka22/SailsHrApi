@@ -7,7 +7,7 @@
 
 module.exports = {
     GetDashposition : async function (req,res) {
-    let data = await Positionemployee.find().populate('position_id');
+    let data = await Positionemployee.find().populate('position_id').populate('emp_id');
     //console.log(data.data.branch_name);
     const jdata = JSON.parse(JSON.stringify(data));
     emppositionname = [];
