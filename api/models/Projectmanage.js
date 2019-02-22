@@ -35,6 +35,11 @@ module.exports = {
     project_note: {
       type : 'string'
     },
+    status: {
+      type: 'number',
+      required: true,
+      isIn: [0,1]
+    },
     
     
 

@@ -15,7 +15,7 @@ module.exports = {
         position_id: position_id
       }
     }).populate('position_id').populate('emp_id');
-    let teamdata = await Team.find().populate('emp_id').populate('position_id');
+    let teamdata = await Team.find().populate('emp_id').populate('position_id').populate('project_id');
     let projectdata = await Projectmanage.findOne({
       id: project_id
     })
@@ -38,7 +38,7 @@ module.exports = {
     let project_start_date = projectpjdata.project_start_date;
     let project_end_date = projectpjdata.project_end_date;
     for (let i = 0; i < teampjdata.length; i++) {
-      if(teampjdata[i].emp_id.status != 0){
+      if(teampjdata[i].emp_id.status != 0 && teampjdata[i].project_id.status != 0){
         emp_id_t.push(teampjdata[i].emp_id.id);
         emp_name_t.push(teampjdata[i].emp_id.emp_name);
         emp_nickname_t.push(teampjdata[i].emp_id.emp_nickname);
