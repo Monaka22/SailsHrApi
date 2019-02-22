@@ -7,7 +7,9 @@
 
 module.exports = {
   GetemployeeDatatable: async function (req, res) {
-    let data = await Employees.find().populate('emp_branch_id');
+    let data = await Employees.find().where({
+      status: 1
+    }).populate('emp_branch_id');
     // const branch = JSON.parse(JSON.stringify(branch_addit_branch_id[0]));
     //             const branch_name = branch.branch_addit_branch_id.branch_name;
     //             const branch_id = branch.branch_addit_branch_id.id;
@@ -99,21 +101,28 @@ module.exports = {
   },
   PostemployeeDelete: async function (req, res) {
     const id = req.body.id
-    if (_.isUndefined(id)||id == ""){
-      return res.badRequest('ID is Undefind.')
+    if(isNaN(req.body.id)){
+      return res.status(400).json('id is String or id Undefined')
     }
-    await Employees.destroy({
-      id: id
-    }).exec(function (err) {
-      if (err) {
-        return res.sendStaus(500, {
-          error: "database error"
+    if(req.body.id==""){
+      return res.status(400).json('id is Undefined')
+    } 
+    if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
+      let data = await Employees.findOne({
+        id: id
+      })
+      if (data) {
+        await Employees.update({
+          id: req.body.id
+        }).set({
+          status: 0
+        })
+        return res.json({
+          message: 'Delete sucsess'
         })
       }
-      return res.json({
-        message: 'Delete sucsess'
-      })
-    })
+    }
+    return res.sendStatus(404);
   },
   GetemployeeById: async function (req, res) {
     const id = req.param('id')

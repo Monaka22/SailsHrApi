@@ -92,7 +92,9 @@ module.exports = {
         // sails.log(data.emp.id)
     },
     GetMandayDatatable : async function (req,res) {
-        let data = await Employees.find();
+        let data = await Employees.find().where({
+            status: 1
+          });
         const jdata = JSON.parse(JSON.stringify(data));
         let emp_id = [];
         let emp_name = [];

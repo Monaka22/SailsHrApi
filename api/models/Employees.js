@@ -49,6 +49,11 @@ module.exports = {
       model : 'branch',
       unique: false
     },
+    status: {
+      type: 'number',
+      required: true,
+      isIn: [0,1]
+    },
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝

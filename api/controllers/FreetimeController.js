@@ -45,12 +45,15 @@ module.exports = {
         emp_start_date_t.push(teampjdata[i].emp_end_date);
     }
     for (let i = 0; i < positionpjdata.length; i++) {
+      if(positionpjdata[i].emp_id.staus != 0){
         emp_id.push(positionpjdata[i].emp_id.id);
         emp_name.push(positionpjdata[i].emp_id.emp_name);
         emp_nickname.push(positionpjdata[i].emp_id.emp_nickname);
         emp_position_id.push(positionpjdata[i].position_id.id);
         emp_end_date.push(1009843200000);
         emp_start_date.push(1009843200000);
+      } 
+      
     }
     emp_id = emp_id.concat(emp_id_t);
     emp_name = emp_name.concat(emp_name_t);
