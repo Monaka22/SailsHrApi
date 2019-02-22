@@ -12,7 +12,10 @@ module.exports = {
     const jdata = JSON.parse(JSON.stringify(data));
     emppositionname = [];
     for (let i = 0; i < jdata.length; i++) {
-        emppositionname.push(jdata[i].position_id.position_name) 
+        if(jdata[i].emp_id.status !=0){
+            emppositionname.push(jdata[i].position_id.position_name) 
+        }
+        
     }
     let dataposition = await Position.find();
     const jdataposition = JSON.parse(JSON.stringify(dataposition));

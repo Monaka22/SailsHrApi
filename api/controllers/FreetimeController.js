@@ -37,12 +37,14 @@ module.exports = {
     let project_start_date = projectpjdata.project_start_date;
     let project_end_date = projectpjdata.project_end_date;
     for (let i = 0; i < teampjdata.length; i++) {
+      if(teampjdata[i].emp_id.staus != 0){
         emp_id_t.push(teampjdata[i].emp_id.id);
         emp_name_t.push(teampjdata[i].emp_id.emp_name);
         emp_nickname_t.push(teampjdata[i].emp_id.emp_nickname);
         emp_end_date_t.push(teampjdata[i].emp_end_date);
         emp_position_id_t.push(teampjdata[i].position_id.id);
         emp_start_date_t.push(teampjdata[i].emp_end_date);
+      }  
     }
     for (let i = 0; i < positionpjdata.length; i++) {
       if(positionpjdata[i].emp_id.staus != 0){
