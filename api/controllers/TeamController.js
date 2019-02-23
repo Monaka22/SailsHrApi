@@ -227,13 +227,11 @@ module.exports = {
     let emp_id = req.body.emp_id
     let project_id = req.body.project_id
     let positionid = req.body.position_id
-    for (let i = 0; i < pushdata.length; i++) {
       await Team.create({
         emp_id: emp_id,
         project_id: project_id,
         position_id: positionid
       }).fetch()
-    }
     return res.json({
       message: 'Create Complele'
     })
