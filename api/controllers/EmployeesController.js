@@ -42,6 +42,7 @@ module.exports = {
         emp_emer_con_address: req.body.emp_emer_con_address,
         emp_emer_con_tel: req.body.emp_emer_con_tel,
         emp_branch_id: req.body.emp_branch_id,
+        status : 1,
         emp_id_card: filename
       }).fetch()
       return res.json({
@@ -72,7 +73,7 @@ module.exports = {
       emp_emer_con_address: req.body.emp_emer_con_address,
       emp_emer_con_tel: req.body.emp_emer_con_tel,
       emp_branch_id: req.body.emp_branch_id,
-      status : 1 
+     
       //emp_id_card: filename
     })
     const id = req.body.id;
