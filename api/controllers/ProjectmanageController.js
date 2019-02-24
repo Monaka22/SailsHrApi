@@ -61,7 +61,8 @@ module.exports = {
         project_end_date: req.body.project_end_date,
         project_team_name: req.body.project_team_name,
         project_total_cost: req.body.project_total_cost,
-        project_note: req.body.project_note
+        project_note: req.body.project_note,
+        status : 1
     }).fetch()
     return res.json({
       message: 'Create Complele'
@@ -131,21 +132,28 @@ module.exports = {
   },
   PostprojectmanageDelete: async function (req, res) {
     const id = req.body.id
-    if (_.isUndefined(id)||id == ""){
-      return res.badRequest('ID is Undefind.')
+    if(isNaN(req.body.id)){
+      return res.status(400).json('id is String or id Undefined')
     }
-    await Projectmanage.destroy({
-      id: id
-    }).exec(function (err) {
-      if (err) {
-        return res.sendStaus(500, {
-          error: "database error"
+    if(req.body.id==""){
+      return res.status(400).json('id is Undefined')
+    } 
+    if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
+      let data = await Projectmanage.findOne({
+        id: id
+      })
+      if (data) {
+        await Projectmanage.update({
+          id: req.body.id
+        }).set({
+          status: 0
+        })
+        return res.json({
+          message: 'Delete sucsess'
         })
       }
-      return res.json({
-        message: 'Delete sucsess'
-      })
-    })
+    }
+    return res.sendStatus(404);
   }
 
 };
