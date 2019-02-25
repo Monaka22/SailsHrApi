@@ -115,8 +115,14 @@ module.exports = {
     if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
       let data = await Benefit.find({where:{benefit_emp_id:id}});
       if (data) {
+        const jdata = JSON.parse(JSON.stringify(data));
+        let total = 0
+          for (let i = 0; i < data.length; i++) {
+            total += jdata[i].benefit_price
+          }
         return res.json({
           data: data,
+          benafitTotal: total,
           message: 'Load By id sucess'
         })
       }
