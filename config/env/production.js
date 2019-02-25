@@ -47,8 +47,8 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     default: {
-      // adapter: 'sails-mysql',
-      // url: 'mysql://user:password@host:port/database',
+      adapter: 'sails-mysql',
+      url: 'mysql://root:1122334455ab@35.198.219.154:3306/hrdb',
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
       //  ||   sensitive credentials like `url` using an environment variable.
@@ -90,7 +90,7 @@ module.exports = {
     * https://sailsjs.com/docs/concepts/models-and-orm/model-settings#?migrate *
     *                                                                          *
     ***************************************************************************/
-    migrate: 'alter',
+    migrate: 'safe',
 
     /***************************************************************************
     *                                                                          *
@@ -148,10 +148,10 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cors: {
-      // allowOrigins: [
-      //   'https://example.com',
-      //   'https://staging.example.com',
-      // ]
+      allowOrigins: [
+        'https://35.198.219.154',
+        'http://localhost:1337'
+      ]
     },
 
   },

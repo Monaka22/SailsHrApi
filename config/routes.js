@@ -125,8 +125,12 @@ module.exports.routes = {
   'GET /manday/project/:id/view' : 'MandayController.GetMandayGetByid', //id : "project_id"
   'GET /manday/emp/datatable' : 'MandayController.GetMandayDatatable',
   //CheckFreetime API
-  'GET /freetime/emp/:id/:position_id' : 'FreetimeController.Getfreetime', //id : "project_id" position_id:"position_id"
-  //'GET /freetime/emp/:id/:position_id' : 'FreetimeController.Getnewfreetime',
+  // 'GET /freetime/emp/:id/:position_id' : 'FreetimeController.Getfreetime', //id : "project_id" position_id:"position_id"
+  'GET /freetime/emp/:id/:position_id': {
+    controller: 'FreetimeController',
+    action: 'Getfreetime',
+    skipAssets: true
+  },
   //Dashboard API
   'GET /dashboard/position':'DashboardController.GetDashposition',
   

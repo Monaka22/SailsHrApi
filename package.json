@@ -20,7 +20,6 @@
     "sails-hook-orm": "^2.0.0-16",
     "sails-hook-sockets": "^1.4.0",
     "sails-mysql": "^1.0.1",
-    "sails-swagger": "^0.5.1",
     "socket.io-redis": "4.0.0"
   },
   "devDependencies": {
