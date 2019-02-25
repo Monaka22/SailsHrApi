@@ -29,9 +29,8 @@ module.exports.security = {
    ***************************************************************************/
 
   cors: {
-    allRoutes: true,
+    allRoutes: false,
     allowOrigins: '*',
-    allowCredentials: false,
     allowRequestMethods:'GET, POST, PUT, DELETE, OPTIONS, HEAD',
     allowRequestHeaders : 'content-type',
     allowResponseHeaders : '',
