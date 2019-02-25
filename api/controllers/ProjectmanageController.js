@@ -9,7 +9,7 @@ moment.locale('th');
 module.exports = {
   GetprojectmanageDatatable: async function (req, res) {
 
-    let data = await Projectmanage.where({
+    let data = await Projectmanage.find().where({
       status: 1
     });
     //console.log(data.data.branch_name);
