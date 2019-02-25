@@ -49,7 +49,7 @@ module.exports.datastores = {
     *                                                                          *
     ***************************************************************************/
     adapter: 'sails-mysql',
-    url: 'mysql://root@localhost:3306/hrdb'
+    url: 'mysql://root:1122334455ab@10.148.0.2:3306/hrdb'
   },
 
 
