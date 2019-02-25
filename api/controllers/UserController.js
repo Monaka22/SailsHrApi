@@ -78,6 +78,7 @@ module.exports = {
     var user = await sails.helpers.createUser({
       username: req.body.username,
       password: req.body.password,
+      status : req.body.status
     })
     sails.log(user)
     // after creating a user record, log them in at the same time by issuing their first jwt token and setting a cookie
