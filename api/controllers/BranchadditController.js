@@ -12,13 +12,11 @@ module.exports = {
     // const branch = JSON.parse(JSON.stringify(branch_addit_branch_id[0]));
     //             const branch_name = branch.branch_addit_branch_id.branch_name;
     //             const branch_id = branch.branch_addit_branch_id.id;
-
     return res.json({
       draw: 0,
       recordsTotal: data.length,
       recordsFiltered: data.length,
       data: data,
-
     })
   },
   PostBranchadditCreate: async function (req, res) {
@@ -113,7 +111,11 @@ module.exports = {
       let data = await Branchaddit.find({where:{branch_addit_branch_id:id}});
       if (data) {
         const jdata = JSON.parse(JSON.stringify(data));
-        let id = [];
+    let total = 0
+          for (let i = 0; i < data.length; i++) {
+            total += jdata[i].branch_addit_price
+          }
+            let id = [];
             let branch_addit_title =[];
             let branch_addit_price =[];
             let branch_addit_date =[];
@@ -138,6 +140,7 @@ module.exports = {
             }
         return res.json({
           data: data,
+          branchAdditTotal :total,
           message: 'Load By id sucess'
         })
       }
@@ -149,8 +152,14 @@ module.exports = {
     if (!_.isUndefined(id) || !_.isNull(id) || id.trim().length != 0) {
       let data = await Fixcost.find({where:{fixcost_branch_id:id}});
       if (data) {
+        const jdata = JSON.parse(JSON.stringify(data));
+        let total = 0
+          for (let i = 0; i < data.length; i++) {
+            total += jdata[i].fixcost_price
+          }
         return res.json({
           data: data,
+          branchFixcostTotal : total,
           message: 'Load By id sucess'
         })
       }
