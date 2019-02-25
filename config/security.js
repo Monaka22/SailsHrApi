@@ -32,10 +32,10 @@ module.exports.security = {
     allRoutes: true,
     allowOrigins: '*',
     allowRequestMethods:'GET, POST, PUT, DELETE, OPTIONS, HEAD',
-    allowRequestHeaders : 'content-type',
+    allowRequestHeaders : '',
     allowResponseHeaders : '',
-    allowCredentials : false,
-    allowAnyOriginWithCredentialsUnsafe :false
+    allowCredentials : true,
+    allowAnyOriginWithCredentialsUnsafe :true
   }
 
 

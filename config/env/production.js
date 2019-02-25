@@ -153,8 +153,8 @@ module.exports = {
     allowRequestMethods:'GET, POST, PUT, DELETE, OPTIONS, HEAD',
     allowRequestHeaders : '',
     allowResponseHeaders : '',
-    allowCredentials : false,
-    allowAnyOriginWithCredentialsUnsafe :false
+    allowCredentials : true,
+    allowAnyOriginWithCredentialsUnsafe :true
 
   },
 
