@@ -153,6 +153,12 @@ module.exports = {
         'http://localhost:1337'
       ]
     },
+    allRoutes: true,
+    allowRequestMethods:'GET, POST, PUT, DELETE, OPTIONS, HEAD',
+    allowRequestHeaders : 'content-type',
+    allowResponseHeaders : '',
+    allowCredentials : false,
+    allowAnyOriginWithCredentialsUnsafe :false
 
   },
 
