@@ -148,12 +148,8 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cors: {
-      allowOrigins: [
-        'https://35.198.219.154',
-        'http://localhost:1337'
-      ]
-    },
     allRoutes: true,
+    allowOrigins: '*',
     allowRequestMethods:'GET, POST, PUT, DELETE, OPTIONS, HEAD',
     allowRequestHeaders : 'content-type',
     allowResponseHeaders : '',
