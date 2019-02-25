@@ -147,9 +147,9 @@ module.exports = {
     * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
     *                                                                          *
     ***************************************************************************/
-    cors: {
-    allRoutes: true,
+  cors: {
     allowOrigins: '*',
+    allRoutes: true,
     allowRequestMethods:'GET, POST, PUT, DELETE, OPTIONS, HEAD',
     allowRequestHeaders : 'content-type',
     allowResponseHeaders : '',
