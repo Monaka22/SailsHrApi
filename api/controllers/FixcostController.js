@@ -59,14 +59,13 @@ module.exports = {
       return res.badRequest('ID is Undefind.')
     }
     try {
-      if(!_.isUndefined(req.body.fixcost_title)&&!_.isUndefined(req.body.fixcost_price)&&!_.isUndefined(req.body.fixcost_note)&&!_.isUndefined(req.body.fixcost_branch_id)){
+      if(!_.isUndefined(req.body.fixcost_title)&&!_.isUndefined(req.body.fixcost_price)&&!_.isUndefined(req.body.fixcost_note)){
       await Fixcost.update({
         id: req.body.id
       }).set({
         fixcost_title: req.body.fixcost_title,
         fixcost_price: req.body.fixcost_price,
         fixcost_note: req.body.fixcost_note,
-        fixcost_branch_id: req.body.fixcost_branch_id
       })
       return res.json({
         message: 'Update sucsess'

@@ -60,14 +60,13 @@ module.exports = {
       return res.badRequest('ID is Undefind.')
     }
     try {
-      if(!_.isUndefined(req.body.branch_addit_title)&&!_.isUndefined(req.body.branch_addit_price)&&!_.isUndefined(req.body.branch_addit_date)&&!_.isUndefined(req.body.branch_addit_branch_id)){
+      if(!_.isUndefined(req.body.branch_addit_title)&&!_.isUndefined(req.body.branch_addit_price)&&!_.isUndefined(req.body.branch_addit_date)){
       await Branchaddit.update({
         id: req.body.id
       }).set({
         branch_addit_title: req.body.branch_addit_title,
         branch_addit_price: req.body.branch_addit_price,
         branch_addit_date: req.body.branch_addit_date,
-        branch_addit_branch_id: req.body.branch_addit_branch_id
       })
       return res.json({
         message: 'Update sucsess'
