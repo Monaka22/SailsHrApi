@@ -155,7 +155,6 @@ module.exports = {
     allowResponseHeaders : '',
     allowCredentials : true,
     allowAnyOriginWithCredentialsUnsafe :true
-
   },
 
 
@@ -394,5 +393,5 @@ module.exports = {
   },
 
 
-
+  }
 };

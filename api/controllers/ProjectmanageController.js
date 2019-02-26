@@ -8,16 +8,16 @@ const moment = require('moment')
 moment.locale('th');
 module.exports = {
   GetprojectmanageDatatable: async function (req, res) {
-
     let data = await Projectmanage.find().where({
       status: 1
     });
     //console.log(data.data.branch_name);
     const jdata = JSON.parse(JSON.stringify(data));
     let total = 0
+    let total2 = 0
           for (let i = 0; i < data.length; i++) {
             total += jdata[i].project_total_cost
-    
+            total2 += jdata[i].project_total_selling
           }
       let id = [];
       let project_name =[];
@@ -50,7 +50,8 @@ module.exports = {
       recordsTotal: data.length,
       recordsFiltered: data.length,
       data: data,
-      allproject_cost:total
+      allproject_cost:total,
+      allproject_selling:total2
     })
 
   },
@@ -62,9 +63,10 @@ module.exports = {
         project_start_date: req.body.project_start_date,
         project_end_date: req.body.project_end_date,
         project_team_name: req.body.project_team_name,
-        project_total_cost: req.body.project_total_cost,
+        project_total_cost: 0,
         project_note: req.body.project_note,
-        status : 1
+        status : 1,
+        selling : req.body.selling/100
     }).fetch()
     return res.json({
       message: 'Create Complele'
@@ -101,8 +103,11 @@ module.exports = {
     }
     try {
       if(!_.isUndefined(req.body.project_name)&&!_.isUndefined(req.body.project_costomer_name)&&!_.isUndefined(req.body.project_start_date)&&!_.isUndefined(req.body.project_end_date)&&!_.isUndefined(req.body.project_team_name)&&!_.isUndefined(req.body.project_note)){
-
-      await Projectmanage.update({
+        let data2 = await Projectmanage.findOne({
+          id: req.body.id
+        });
+        let project_total_cost = data2.project_total_cost
+        await Projectmanage.update({
         id: req.body.id
       }).set({
         project_name: req.body.project_name,
@@ -110,8 +115,9 @@ module.exports = {
         project_start_date: req.body.project_start_date,
         project_end_date: req.body.project_end_date,
         project_team_name: req.body.project_team_name,
-        project_total_cost: req.body.project_total_cost,
-        project_note: req.body.project_note
+        project_note: req.body.project_note,
+        selling : req.body.selling/100,
+        project_total_selling : project_total_cost*(req.body.selling/100)
       })
       return res.json({
         message: 'Update sucsess'

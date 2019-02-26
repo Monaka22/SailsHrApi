@@ -250,7 +250,7 @@ module.exports = {
     //             jsonObj =  array ;
     //         } 
     //         return res.json({data:jsonObj})
-  }
+  },
 
 
 };

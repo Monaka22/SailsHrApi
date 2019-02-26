@@ -40,6 +40,12 @@ module.exports = {
       required: true,
       isIn: [0,1]
     },
+    selling :{
+      type : 'number'
+    },
+    project_total_selling :{
+      type : 'number'
+    },
     
     
 
