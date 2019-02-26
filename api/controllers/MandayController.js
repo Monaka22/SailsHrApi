@@ -116,6 +116,7 @@ module.exports = {
                     total_benefit += jdatabnf[k].benefit_price
                  }
                   manM =  total_benefit + jdata[j].emp_salary;
+                total_benefit = 0;
                  manday = manM / 20
                  mandayArray.push(manday)
          }
