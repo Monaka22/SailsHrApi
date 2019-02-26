@@ -26,6 +26,7 @@ module.exports = {
       let project_start_date_format =[];
       let project_team_name = [];
       let project_total_cost = [];
+      let project_total_selling = [];
       for (let i = 0; i < jdata.length; i++) {
         id.push(jdata[i].id)
         project_name.push(jdata[i].project_name);
@@ -33,6 +34,7 @@ module.exports = {
         project_team_name.push(jdata[i].project_team_name);
         project_start_date.push(jdata[i].project_start_date);
         project_total_cost.push(jdata[i].project_total_cost);
+        project_total_selling.push(jdata[i].project_total_selling);
         project_start_date_format.push(moment(jdata[i].project_start_date).format('DD MMMM YYYY'));
     }
     var jsonObj = {}
