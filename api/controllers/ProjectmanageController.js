@@ -40,7 +40,7 @@ module.exports = {
     var jsonObj = {}
     var array = []
    for(i=0; i < id.length; i++){
-                     array.push({id:id[i],project_name:project_name[i],project_costomer_name:project_costomer_name[i],project_team_name:project_team_name[i],project_start_date:project_start_date[i],project_start_date_format:project_start_date_format[i],project_total_cost:project_total_cost[i],project_total_selling:project_total_selling[i]})
+                array.push({id:id[i],project_name:project_name[i],project_costomer_name:project_costomer_name[i],project_team_name:project_team_name[i],project_start_date:project_start_date[i],project_start_date_format:project_start_date_format[i],project_total_cost:project_total_cost[i],project_total_selling:project_total_selling[i]})
                 jsonObj =  array ;    
        }
        if(jdata.length != 0){

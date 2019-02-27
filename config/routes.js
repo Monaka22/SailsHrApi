@@ -126,7 +126,12 @@ module.exports.routes = {
   'GET /manday/emp/datatable' : 'MandayController.GetMandayDatatable',
   //CheckFreetime API
   // 'GET /freetime/emp/:id/:position_id' : 'FreetimeController.Getfreetime', //id : "project_id" position_id:"position_id"
-  'GET /freetime/emp/:id/:position_id': {
+  'POST /freetime/emp/:id/:position_id': {
+    controller: 'FreetimeController',
+    action: 'Postfreetime',
+    skipAssets: true
+  },
+  'GET /freetime/emp/:id' : {
     controller: 'FreetimeController',
     action: 'Getfreetime',
     skipAssets: true
