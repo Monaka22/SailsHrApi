@@ -230,7 +230,9 @@ module.exports = {
       await Team.create({
         emp_id: emp_id,
         project_id: project_id,
-        position_id: positionid
+        position_id: positionid,
+        emp_start_date: req.body.emp_start_date,
+        emp_end_date: req.body.emp_end_date,
       }).fetch()
     return res.json({
       message: 'Create Complele'

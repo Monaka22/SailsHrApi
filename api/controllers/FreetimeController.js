@@ -4,7 +4,8 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
-
+const moment = require('moment')
+moment.locale('th');
 module.exports = {
   Postfreetime: async function (req, res) {
     position_id = req.param('position_id');
@@ -12,6 +13,9 @@ module.exports = {
     let data = await Team.find({where:{id : 0}})
     let emp_start = req.body.emp_start_date
     let emp_end = req.body.emp_end_date
+    let projectdata = await Projectmanage.findOne({
+        id: project_id
+      })
     // sails.log(emp_start)
     // sails.log(emp_end)
      let positiondata = await Positionemployee.find({
@@ -20,12 +24,14 @@ module.exports = {
       }
     }).populate('position_id').populate('emp_id');
     let teamdata = await Team.find().populate('emp_id').populate('position_id').populate('project_id');
-    let projectdata = await Projectmanage.findOne({
-      id: project_id
-    })
     let teampjdata = JSON.parse(JSON.stringify(teamdata));
     let positionpjdata = JSON.parse(JSON.stringify(positiondata));
-    //let projectpjdata = JSON.parse(JSON.stringify(projectdata));
+    let projectpjdata = JSON.parse(JSON.stringify(projectdata));
+    // sails.log(projectpjdata.project_end_date)
+    // sails.log(projectpjdata.project_start_date)
+    if(emp_end < projectpjdata.project_start_date || emp_start > projectpjdata.project_end_date){
+        res.status(400).json({message:"อยู่นอกเวลาโปรเจ็ค"});
+    }
     let emp_id_t = [];
     let emp_name_t = [];
     let emp_nickname_t = [];
@@ -163,9 +169,9 @@ module.exports = {
     let emp_end_date = Date.now()
     // sails.log(emp_start_date)
     // sails.log(emp_end_date)
-    return res.json({data:[{emp_start_date:emp_start_date,emp_end_date:emp_end_date}]})
+    return res.json({data:[{emp_start_date:emp_start_date,emp_end_date:emp_end_date,emp_start_date_format:moment(emp_start_date).format('DD MMMM YYYY'),emp_end_date_format:moment(emp_end_date).format('DD MMMM YYYY')}]})
   }
-
+  //moment(jdata[i].project_start_date).format('DD MMMM YYYY')
 
 };
 
