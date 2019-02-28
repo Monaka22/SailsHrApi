@@ -20,6 +20,9 @@ module.exports = {
 			type: 'string',
 			required: true
 		},
+		name:{
+			type:'string'
+		},
 		status:{
 			type:'string'
 		}

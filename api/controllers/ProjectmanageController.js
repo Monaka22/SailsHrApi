@@ -68,7 +68,7 @@ module.exports = {
         project_total_cost: 0,
         project_note: req.body.project_note,
         status : 1,
-        selling : req.body.selling/100
+        selling : req.body.selling
     }).fetch()
     return res.json({
       message: 'Create Complele'
@@ -118,8 +118,8 @@ module.exports = {
         project_end_date: req.body.project_end_date,
         project_team_name: req.body.project_team_name,
         project_note: req.body.project_note,
-        selling : req.body.selling/100,
-        project_total_selling : project_total_cost*(req.body.selling/100)
+        selling : req.body.selling,
+        project_total_selling : project_total_cost*(req.body.selling/100)+project_total_cost
       })
       return res.json({
         message: 'Update sucsess'

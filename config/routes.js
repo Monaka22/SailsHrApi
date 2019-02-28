@@ -163,6 +163,10 @@ module.exports.routes = {
   'post /api/users/login': 'UserController.login',
   'post /api/users/logout': 'UserController.logout',
   'post /api/users/register': 'UserController.register',
+  'post /api/users/delete': 'UserController.delete',
+  'post /api/users/update': 'UserController.UserUpdate',
+  'get /api/users/:id/view': 'UserController.GetUserById',
+
   //'post /api/test': 'PageController.test',
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗

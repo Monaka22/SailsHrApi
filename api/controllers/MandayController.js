@@ -62,7 +62,7 @@ module.exports = {
         var array = []
         
         for(i=0; i < emp_id.length; i++){
-            array.push({emp_id:emp_id[i],emp_name:emp_name[i],emp_nickname:emp_nickname[i],position_name:position[i],workday:emp_workday[i],emp_sprint:emp_sprint[i],manday:mandayArray[i],Selling:mandayArray[i]*pjdata.selling})
+            array.push({emp_id:emp_id[i],emp_name:emp_name[i],emp_nickname:emp_nickname[i],position_name:position[i],workday:emp_workday[i],emp_sprint:emp_sprint[i],manday:mandayArray[i],Selling:(mandayArray[i]*pjdata.selling)/100+mandayArray[i]})
             jsonObj =  array ;
         } 
        
@@ -78,7 +78,7 @@ module.exports = {
                 data = jsonObj;
               }
         return res.json({data:data,
-        project_cost_total:projecttotal,project_cost_selling:projecttotal*pjdata.selling,project_name:pjdata.project_name,project_costomer_name : pjdata.project_costomer_name})
+        project_cost_total:projecttotal,project_cost_selling:(projecttotal*pjdata.selling/100)+projecttotal,project_name:pjdata.project_name,project_costomer_name : pjdata.project_costomer_name})
 
 
 
