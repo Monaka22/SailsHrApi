@@ -167,6 +167,7 @@ module.exports.routes = {
   'post /api/users/update': 'UserController.UserUpdate',
   'get /api/users/:id/view': 'UserController.GetUserById',
   'get /api/users/datatable': 'UserController.GetUserDatatable',
+  'post /api/users/updatename': 'UserController.UserNameUpdate',
   //'post /api/test': 'PageController.test',
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗

@@ -136,8 +136,6 @@ module.exports = {
       }).set({
         username: req.body.username,
         password: req.body.password,
-        name: req.body.name,
-        status : req.body.status
       })
       return res.json({
         message: 'Update sucsess'
@@ -145,6 +143,31 @@ module.exports = {
     }
     return res.status(400).json({
         Error: 'Some Data is Undefined'
+      })
+    } catch (err) {
+      // sails.log(err)
+      // sails.log(JSON.stringify(err))
+      //let message = await sails.helpers.error(err.code, '')
+      sails.log(err)
+      return res.badRequest({
+        err: err,
+        message: 'Code is error'
+      })
+    }
+  },
+  UserNameUpdate: async function (req, res) {
+    if (_.isUndefined(req.body.id)||req.body.id == ""){
+      return res.badRequest('ID is Undefind.')
+    }
+    try {
+      await User.update({
+        id: req.body.id
+      }).set({
+        name: req.body.name,
+        status : req.body.status
+      })
+      return res.json({
+        message: 'Update sucsess'
       })
     } catch (err) {
       // sails.log(err)
