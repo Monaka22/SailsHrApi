@@ -130,7 +130,7 @@ module.exports = {
     }
     try {
       if(!_.isUndefined(req.body.username)&&!_.isUndefined(req.body.password)){
-      await Branch.update({
+      await User.update({
         id: req.body.id
       }).set({
         username: req.body.username,
