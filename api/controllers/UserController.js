@@ -131,9 +131,8 @@ module.exports = {
     }
     try {
       if(!_.isUndefined(req.body.username)&&!_.isUndefined(req.body.password)){
-      await User.update({
-        id: req.body.id
-      }).set({
+      await sails.helpers.updateUser({
+        id: req.body.id,
         username: req.body.username,
         password: req.body.password,
       })
