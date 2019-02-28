@@ -29,7 +29,10 @@ module.exports = {
     let projectpjdata = JSON.parse(JSON.stringify(projectdata));
     // sails.log(projectpjdata.project_end_date)
     // sails.log(projectpjdata.project_start_date)
-    if(emp_end < projectpjdata.project_start_date || emp_start > projectpjdata.project_end_date){
+    if(emp_start > emp_end){
+      res.status(403).json({message:"start after end"});
+    }
+    if( projectpjdata.project_start_date > emp_start || projectpjdata.project_end_date < emp_end){
         res.status(400).json({message:"อยู่นอกเวลาโปรเจ็ค"});
     }
     let emp_id_t = [];
