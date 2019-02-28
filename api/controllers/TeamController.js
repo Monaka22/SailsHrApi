@@ -227,12 +227,20 @@ module.exports = {
     let emp_id = req.body.emp_id
     let project_id = req.body.project_id
     let positionid = req.body.position_id
+    let day = req.body.emp_end_date - req.body.emp_start_date;
+    day = Math.floor((day / (3600 * 24)) / 1000);
+    let emp_sprint = (day / 7 | 0) + 1;
+    if(day == 0){
+      emp_sprint = 0
+    }
       await Team.create({
         emp_id: emp_id,
         project_id: project_id,
         position_id: positionid,
         emp_start_date: req.body.emp_start_date,
         emp_end_date: req.body.emp_end_date,
+        emp_workday: day,
+        emp_sprint: emp_sprint,
       }).fetch()
     return res.json({
       message: 'Create Complele'
