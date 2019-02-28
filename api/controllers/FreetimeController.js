@@ -33,7 +33,7 @@ module.exports = {
       res.status(403).json({message:"start after end"});
     }
     if( projectpjdata.project_start_date > emp_start || projectpjdata.project_end_date < emp_end){
-        res.status(400).json({message:"อยู่นอกเวลาโปรเจ็ค"});
+        res.status(402).json({message:"อยู่นอกเวลาโปรเจ็ค"});
     }
     let emp_id_t = [];
     let emp_name_t = [];
