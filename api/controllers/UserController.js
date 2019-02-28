@@ -43,6 +43,7 @@ module.exports = {
       // provide the token to the client in case they want to store it locally to use in the header (eg mobile/desktop apps)
       let userjson = JSON.parse(JSON.stringify(user));
       var jsonObj = {
+        id : userjson.id,
         username: req.body.username,
         name: userjson.name,
         status: userjson.status,
