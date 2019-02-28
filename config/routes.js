@@ -166,7 +166,7 @@ module.exports.routes = {
   'post /api/users/delete': 'UserController.delete',
   'post /api/users/update': 'UserController.UserUpdate',
   'get /api/users/:id/view': 'UserController.GetUserById',
-
+  'get /api/users/datatable': 'UserController.GetUserDatatable',
   //'post /api/test': 'PageController.test',
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗

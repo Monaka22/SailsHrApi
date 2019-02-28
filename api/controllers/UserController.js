@@ -173,5 +173,17 @@ module.exports = {
         message: 'Delete sucsess'
       })
     })
-  }
+  },
+  GetUserDatatable: async function (req, res) {
+    
+    let data = await User.find()
+    //console.log(data.data.branch_name);
+    return res.json({
+      draw: 0,
+      recordsTotal: data.length,
+      recordsFiltered: data.length,
+      data:data
+    })
+    
+  },
 }
