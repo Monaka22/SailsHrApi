@@ -83,7 +83,7 @@ module.exports = {
       name :req.body.name,
       status : req.body.status
     })
-    sails.log(user)
+    //sails.log(user)
     // after creating a user record, log them in at the same time by issuing their first jwt token and setting a cookie
     var token = jwt.sign({
       user: user.id
@@ -95,7 +95,7 @@ module.exports = {
       // domain: '.yourdomain.com', // always use this in production to whitelist your domain
       maxAge: 86400 // sails.config.jwtExpires
     })
-    sails.log(token)
+    //sails.log(token)
     // if this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
     // send a 200 response letting the user agent know the signup was successful.
     if (req.wantsJSON) {
@@ -131,7 +131,7 @@ module.exports = {
     }
     try {
       if(!_.isUndefined(req.body.username)&&!_.isUndefined(req.body.password)){
-      await sails.helpers.updateUser({
+   await sails.helpers.updateUser({
         id: req.body.id,
         username: req.body.username,
         password: req.body.password,
@@ -199,7 +199,34 @@ module.exports = {
   },
   GetUserDatatable: async function (req, res) {
     
-    let data = await User.find()
+    let data = await User.find({where:{status : "Human resources",}})
+    let data2 = await User.find({where:{status:"Admin"}})
+    let id = []
+    let username = []
+    let name = []
+    let status = []
+    for (let i = 0; i < data.length; i++) {
+    id.push(data[i].id);
+    username.push(data[i].username);
+    name.push(data[i].name);
+    status.push(data[i].status);
+
+  } 
+  for (let i = 0; i < data2.length; i++) {
+    id.push(data2[i].id);
+    username.push(data2[i].username);
+    name.push(data2[i].name);
+    status.push(data2[i].status);
+  } 
+  var jsonObj = {}
+    var array = []
+   for(i=0; i < id.length; i++){
+                array.push({id:id[i],username:username[i],name:name[i],status:status[i]})
+                jsonObj =  array ;    
+       }
+       if(data.length != 0||data2.length != 0){
+        data = jsonObj;
+      }
     //console.log(data.data.branch_name);
     return res.json({
       draw: 0,

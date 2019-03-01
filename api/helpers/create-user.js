@@ -11,6 +11,12 @@ module.exports = {
 		password: {
 			type: 'string'
 		},
+		name:{
+			type :'string'
+		},
+		status:{
+			type:'string'
+		}
 	},
 
 	exits: {
@@ -32,7 +38,8 @@ module.exports = {
 
 		if (inputs.password) {
 			attr.password = await bcrypt.hash(inputs.password, 10)
-
+			attr.name = inputs.name
+			attr.status = inputs.status
 			var user = await User.create(attr)
 			.intercept('E_UNIQUE', () => 'usernameAlreadyInUse')
 			.intercept({name: 'UsageError'}, () => 'invalid')
