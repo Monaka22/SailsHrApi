@@ -76,7 +76,7 @@ module.exports = {
     if (req.body.password.length < 8) {
       return res.badRequest('Password must be at least 8 characters.')
     }
-    sails.log(req.body)
+    //sails.log(req.body)
     var user = await sails.helpers.createUser({
       username: req.body.username,
       password: req.body.password,
