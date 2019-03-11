@@ -13,7 +13,9 @@ a [Sails v1](https://sailsjs.com) application
 
 
 ### Version info
-
+1. sudo npm i
+2. sudo npm install sails-g
+3. sails lift --prod
 This app was originally generated on Tue Jan 22 2019 11:22:51 GMT+0700 (+07) using Sails v1.1.0.
 
 ##
